@@ -1,0 +1,142 @@
+{%- style -%}
+  .pj-featured-on {
+    background: #fff;
+    padding: var(--pj-section-padding-desktop) 2rem;
+  }
+  @media (max-width: 749px) {
+    .pj-featured-on { padding: var(--pj-section-padding-mobile) 2rem; }
+  }
+  .pj-featured-on__heading {
+    text-align: center;
+    font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--pj-brown);
+    margin: 0 0 3.6rem;
+    letter-spacing: 0.04em;
+  }
+  .pj-featured-on__scroll {
+    max-width: 124rem;
+    margin: 0 auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .pj-featured-on__scroll::-webkit-scrollbar { display: none; }
+  .pj-featured-on__logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    padding: 0.4rem 0;
+  }
+  .pj-featured-on__logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pj-featured-on__logo img {
+    height: 4rem;
+    width: auto;
+    max-width: 14rem;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.5);
+    transition: filter 0.25s;
+  }
+  .pj-featured-on__logo a:hover img,
+  .pj-featured-on__logo img:hover { filter: grayscale(0%) opacity(1); }
+  .pj-featured-on__placeholder {
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(74,44,10,0.25);
+    transition: color 0.25s;
+  }
+  .pj-featured-on__logo:hover .pj-featured-on__placeholder { color: var(--pj-orange); }
+{%- endstyle -%}
+
+<div class="pj-featured-on">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="pj-featured-on__heading">{{ section.settings.heading | escape }}</h2>
+  {%- endif -%}
+
+  <div class="pj-featured-on__scroll">
+    <div class="pj-featured-on__logos">
+      {%- for block in section.blocks -%}
+        <div class="pj-featured-on__logo" {{ block.shopify_attributes }}>
+          {%- if block.settings.logo != blank -%}
+            {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" target="_blank" rel="noopener">{%- endif -%}
+            {{
+              block.settings.logo
+              | image_url: width: 300
+              | image_tag:
+                loading: 'lazy',
+                alt: block.settings.name | default: 'Press logo'
+            }}
+            {%- if block.settings.link != blank -%}</a>{%- endif -%}
+          {%- elsif block.settings.name != blank -%}
+            <span class="pj-featured-on__placeholder">{{ block.settings.name | escape }}</span>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured On",
+  "tag": "section",
+  "class": "section-featured-on",
+  "disabled_on": { "groups": ["header","footer"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured On"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Press Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Publication name",
+          "info": "Shown as text placeholder when no image is uploaded"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured On",
+      "blocks": [
+        { "type": "logo", "settings": { "name": "Medium" } },
+        { "type": "logo", "settings": { "name": "BuzzFeed" } },
+        { "type": "logo", "settings": { "name": "BestLife" } },
+        { "type": "logo", "settings": { "name": "Authority Magazine" } },
+        { "type": "logo", "settings": { "name": "Daily Mom" } },
+        { "type": "logo", "settings": { "name": "6sqft" } },
+        { "type": "logo", "settings": { "name": "Home Business" } },
+        { "type": "logo", "settings": { "name": "Forbes" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

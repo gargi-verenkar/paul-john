@@ -48,7 +48,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--pj-brown);
+    background: rgba(30, 12, 2, var(--overlay-opacity, 0.4));
   }
 
   /* Content overlay */
@@ -266,12 +266,36 @@
                 fetchpriority: fetch_priority
             }}
           {%- else -%}
-            {%- assign placeholder_index = forloop.index | modulo: 2 -%}
-            {%- if placeholder_index == 1 -%}
-              {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-            {%- else -%}
-              {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
-            {%- endif -%}
+            {%- case forloop.index -%}
+              {%- when 1 -%}
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Filter_Kaapi.jpg"
+                  alt="Traditional South Indian filter coffee in a tumbler — Paul John Caffeine"
+                  loading="eager"
+                  style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"
+                >
+              {%- when 2 -%}
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/5/51/Filter_kaapi.JPG"
+                  alt="Authentic South Indian filter kaapi — Paul John Caffeine"
+                  loading="lazy"
+                  style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"
+                >
+              {%- when 3 -%}
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/1/10/GKN_Filter_Coffee_DSC_1038.JPG"
+                  alt="South Indian filter coffee in steel davara tumbler — Paul John Caffeine"
+                  loading="lazy"
+                  style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"
+                >
+              {%- else -%}
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Foaming_filter_coffee.jpg"
+                  alt="Coffee beans — Paul John Caffeine"
+                  loading="lazy"
+                  style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"
+                >
+            {%- endcase -%}
           {%- endif -%}
         </div>
 

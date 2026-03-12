@@ -1,210 +1,224 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero_banner": {
+      "type": "hero-banner",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "slide_1": {
+          "type": "slide",
           "settings": {
-            "heading": "Image banner",
-            "heading_size": "h0"
+            "eyebrow": "Welcome to Paul John Caffeine",
+            "heading": "The Taste of <em>South India</em>",
+            "subtext": "Freshly roasted arabica & robusta blends, crafted for the discerning cup.",
+            "button_label": "Shop Coffee",
+            "button_link": "shopify://collections/all",
+            "image_overlay_opacity": 40
           }
         },
-        "text": {
-          "type": "text",
+        "slide_2": {
+          "type": "slide",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
+            "eyebrow": "Bestseller",
+            "heading": "Filter Coffee <em>Done Right</em>",
+            "subtext": "Our signature decoction blend — bold, aromatic, and full of character.",
+            "button_label": "Explore Blends",
+            "button_link": "shopify://collections/coffee",
+            "image_overlay_opacity": 40
           }
         },
-        "button": {
-          "type": "buttons",
+        "slide_3": {
+          "type": "slide",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "eyebrow": "Subscribe & Save",
+            "heading": "Never Run Out of <em>Great Coffee</em>",
+            "subtext": "Set up a subscription and save up to 10% on every order.",
+            "button_label": "Subscribe Now",
+            "button_link": "shopify://collections/all",
+            "image_overlay_opacity": 40,
+            "button_style_outline": true
           }
         }
       },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ],
+      "block_order": ["slide_1", "slide_2", "slide_3"],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "slide_height": "large",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "show_text_below_mobile": false
       }
     },
-    "rich_text": {
-      "type": "rich-text",
+    "trust_badges": {
+      "type": "trust-badges",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "b1": { "type": "badge", "settings": { "icon": "award",    "label": "Minority Women Owned Certified" } },
+        "b2": { "type": "badge", "settings": { "icon": "leaf",     "label": "Handpicked & Shade Grown" } },
+        "b3": { "type": "badge", "settings": { "icon": "star",     "label": "Kosher Certified" } },
+        "b4": { "type": "badge", "settings": { "icon": "mountain", "label": "Premium Indian Grown Beans" } },
+        "b5": { "type": "badge", "settings": { "icon": "flame",    "label": "Freshly Roasted In The USA" } }
+      },
+      "block_order": ["b1","b2","b3","b4","b5"],
+      "settings": { "show_section": true }
+    },
+    "bestsellers": {
+      "type": "bestsellers",
+      "settings": {
+        "heading": "SHOP OUR BESTSELLERS",
+        "collection": "bestsellers"
+      }
+    },
+    "featured_on": {
+      "type": "featured-on",
+      "blocks": {
+        "l1": { "type": "logo", "settings": { "name": "Medium" } },
+        "l2": { "type": "logo", "settings": { "name": "BuzzFeed" } },
+        "l3": { "type": "logo", "settings": { "name": "BestLife" } },
+        "l4": { "type": "logo", "settings": { "name": "Authority Magazine" } },
+        "l5": { "type": "logo", "settings": { "name": "Daily Mom" } },
+        "l6": { "type": "logo", "settings": { "name": "6sqft" } },
+        "l7": { "type": "logo", "settings": { "name": "Home Business" } },
+        "l8": { "type": "logo", "settings": { "name": "Forbes" } }
+      },
+      "block_order": ["l1","l2","l3","l4","l5","l6","l7","l8"],
+      "settings": { "heading": "Featured On" }
+    },
+    "brand_story": {
+      "type": "brand-story",
+      "settings": {
+        "eyebrow": "DISCOVER THE RICH TASTE OF",
+        "heading": "PAUL JOHN <em>Caffeine</em>",
+        "subheading": "Experience the Best Indian Coffee Beans",
+        "body_1": "<p>Nestled in the lush hills of South India, Paul John Caffeine was born from a deep passion for authentic Indian coffee. We source only the finest arabica and robusta beans from shade-grown estates in Karnataka, Kerala, and Tamil Nadu.</p>",
+        "body_2": "<p>Every batch is carefully roasted in the USA to preserve the natural character of each bean — a cup that tells a story of heritage, craftsmanship, and the vibrant land where it all begins.</p>",
+        "btn_label": "OUR STORY",
+        "btn_link": "shopify://pages/who-we-are"
+      }
+    },
+    "subscribe_save": {
+      "type": "subscribe-save",
+      "blocks": {
+        "ben1": { "type": "benefit", "settings": { "icon": "clock",   "title": "AUTOMATIC timely DELIVERY",  "desc": "Say goodbye to last-minute runs to the store" } },
+        "ben2": { "type": "benefit", "settings": { "icon": "toggle",  "title": "YOU'RE IN CONTROL",           "desc": "Adjust, pause, or cancel anytime" } },
+        "ben3": { "type": "benefit", "settings": { "icon": "percent", "title": "savor & save upto 10%",        "desc": "Get your coffee delivered as per choice of duration" } },
+        "ben4": { "type": "benefit", "settings": { "icon": "sliders", "title": "Customize to Your Taste",      "desc": "Get your coffee delivered as per choice of duration" } }
+      },
+      "block_order": ["ben1","ben2","ben3","ben4"],
+      "settings": {
+        "heading": "subscribe & Save <strong>up to 10%</strong>",
+        "subheading": "Save up to 10% by subscribing to Paul John Caffeine products",
+        "btn_label": "SHOP NOW",
+        "btn_link": "shopify://collections/all"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
           "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
+            "quote": "<p>I had the privilege of traveling with Mr. Paul John... ethically procured from plantations around Coorg. The flavour is unmatched.</p>",
+            "name": "Koray Kaan Özdemir",
+            "title": "World Whisky Brand Ambassador of the Year 2023"
           }
         },
-        "text": {
-          "type": "text",
+        "t2": {
+          "type": "testimonial",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+            "quote": "<p>Smell of Rain is an extraordinary pour. Full, rich, bold, balanced, hints of cocoa, sweet and tangy.</p>",
+            "name": "Steve Beal",
+            "title": "Verified Purchase"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>Excellent. Ground the beans to a coarse grind and used a French press to brew the coffee. The flavour was outstanding.</p>",
+            "name": "Renate Stensland",
+            "title": "Verified Purchase"
           }
         }
       },
-      "block_order": [
-        "heading",
-        "text"
-      ],
+      "block_order": ["t1","t2","t3"],
       "settings": {
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 0
+        "heading": "TESTIMONIALS",
+        "subheading": "What our beloved customers have to say about us"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "newsletter_signup": {
+      "type": "newsletter-signup",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "show_view_all": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "padding_top": 28,
-        "padding_bottom": 36
+        "heading": "NEVER MISS OUT!",
+        "subtext": "Stay up to date with our latest products!",
+        "btn_label": "SUBMIT"
       }
     },
-    "collage": {
-      "type": "collage",
+    "instagram_feed": {
+      "type": "instagram-feed",
       "blocks": {
-        "collection-0": {
-          "type": "collection",
+        "p1": { "type": "post", "settings": {} },
+        "p2": { "type": "post", "settings": {} },
+        "p3": { "type": "post", "settings": {} },
+        "p4": { "type": "post", "settings": {} },
+        "p5": { "type": "post", "settings": {} },
+        "p6": { "type": "post", "settings": {} }
+      },
+      "block_order": ["p1","p2","p3","p4","p5","p6"],
+      "settings": {
+        "show_section": true,
+        "heading": "LIKE WHAT YOU SEE?",
+        "instagram_url": "https://instagram.com/pauljohncaffeine"
+      }
+    },
+    "faq_accordion": {
+      "type": "faq-accordion",
+      "blocks": {
+        "f1": {
+          "type": "faq",
           "settings": {
-            "collection": ""
+            "question": "Where Do Arabica Coffee Beans Come From?",
+            "answer": "<p>Arabica coffee beans originate from Ethiopia back in the 15th century. They were first discovered in the Kaffa region, where they were found growing abundantly in the wild.</p>"
           }
         },
-        "product": {
-          "type": "product",
+        "f2": {
+          "type": "faq",
           "settings": {
-            "product": "",
-            "second_image": false
+            "question": "What Are Single-Origin Coffee Beans?",
+            "answer": "<p>Coffee beans that come from a specific region, farm, or producer within a single country are called single-origin coffee beans.</p>"
           }
         },
-        "collection-1": {
-          "type": "collection",
+        "f3": {
+          "type": "faq",
           "settings": {
-            "collection": ""
+            "question": "Why Does Indian Coffee Taste Different?",
+            "answer": "<p>Traditional South Indian coffee is made with a blend of Arabica and Robusta beans, often combined with chicory to enrich the flavor and body of the brew.</p>"
           }
         }
       },
-      "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
-      ],
-      "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
+      "block_order": ["f1","f2","f3"],
+      "settings": { "heading": "F.A.Q." }
     },
-    "video": {
-      "type": "video",
-      "settings": {
-        "heading": "",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "heading_size": "h1",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn": {
-      "type": "multicolumn",
+    "trust_marquee": {
+      "type": "trust-marquee",
       "blocks": {
-        "column1": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column2": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column3": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
+        "m1": { "type": "item", "settings": { "text": "100% Indian Coffee" } },
+        "m2": { "type": "item", "settings": { "text": "Free Shipping On Orders Above $50" } },
+        "m3": { "type": "item", "settings": { "text": "Subscribe & Save" } },
+        "m4": { "type": "item", "settings": { "text": "Freshly Roasted In The USA" } },
+        "m5": { "type": "item", "settings": { "text": "Kosher Certified" } }
       },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ],
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
+      "block_order": ["m1","m2","m3","m4","m5"],
+      "settings": { "speed": 30 }
     }
   },
   "order": [
-    "image_banner",
-    "rich_text",
-    "featured_collection",
-    "collage",
-    "video",
-    "multicolumn"
+    "hero_banner",
+    "trust_badges",
+    "bestsellers",
+    "featured_on",
+    "brand_story",
+    "subscribe_save",
+    "testimonials",
+    "newsletter_signup",
+    "instagram_feed",
+    "faq_accordion",
+    "trust_marquee"
   ]
 }

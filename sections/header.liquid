@@ -1,638 +1,456 @@
-<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
-
-{%- if settings.predictive_search_enabled -%}
-  <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
-{%- endif -%}
-
-{%- if section.settings.menu_type_desktop == 'mega' -%}
-  <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-{%- endif -%}
-
-
-<style>
-  header-drawer {
-    justify-self: start;
-    margin-left: -1.2rem;
-  }
-
-  {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
-    .scrolled-past-header .header__heading-logo-wrapper {
-      width: 75%;
-    }
-  {%- endif -%}
-
-  {%- if section.settings.menu_type_desktop != "drawer" -%}
-    @media screen and (min-width: 990px) {
-      header-drawer {
-        display: none;
-      }
-    }
-  {%- endif -%}
-
-  .menu-drawer-container {
-    display: flex;
-  }
-
-  .list-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .list-menu--inline {
-    display: inline-flex;
-    flex-wrap: wrap;
-  }
-
-  summary.list-menu__item {
-    padding-right: 2.7rem;
-  }
-
-  .list-menu__item {
-    display: flex;
-    align-items: center;
-    line-height: calc(1 + 0.3 / var(--font-body-scale));
-  }
-
-  .list-menu__item--link {
-    text-decoration: none;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-    line-height: calc(1 + 0.8 / var(--font-body-scale));
-  }
-
-  @media screen and (min-width: 750px) {
-    .list-menu__item--link {
-      padding-bottom: 0.5rem;
-      padding-top: 0.5rem;
-    }
-  }
-</style>
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
 
 {%- style -%}
-  .header {
-    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
+  :root {
+    --pj-cream:  #FDF6EC;
+    --pj-brown:  #4A2C0A;
+    --pj-orange: #C8651B;
+    --pj-font:   -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
-  .section-header {
-    position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
-    margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+  /* ── CRITICAL: force our wrapper to take full width and stack vertically
+        regardless of Dawn's parent flex container ── */
+  .pj-site-header {
+    display: block;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
-  @media screen and (min-width: 750px) {
-    .section-header {
-      margin-bottom: {{ section.settings.margin_bottom }}px;
-    }
+  /* ── Announcement bar ── */
+  .pj-announce {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2.4rem;
+    background: var(--pj-brown);
+    padding: 0.8rem 2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .pj-announce__item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.2rem;
+    color: var(--pj-cream);
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: var(--pj-font);
+  }
+  .pj-announce__item svg {
+    width: 1.4rem; height: 1.4rem;
+    fill: none; stroke: var(--pj-cream);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+  .pj-announce__item:hover { color: var(--pj-orange); }
+
+  /* ── Header bar ── */
+  .pj-header {
+    display: block;
+    width: 100%;
+    background: var(--pj-cream);
+    border-bottom: 1px solid rgba(74,44,10,0.1);
+    box-sizing: border-box;
+  }
+  .pj-header__inner {
+    max-width: 140rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 7rem;
+    gap: 2rem;
   }
 
-  @media screen and (min-width: 990px) {
-    .header {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
+  /* ── Logo ── */
+  .pj-header__logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .pj-header__logo img {
+    height: 5.6rem;
+    width: auto;
+    display: block;
+  }
+  .pj-logo-svg {
+    height: 5.6rem;
+    width: 5.6rem;
+    display: block;
+  }
+
+  /* ── Nav ── */
+  .pj-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin: 0; padding: 0;
+    gap: 0.4rem;
+  }
+  .pj-nav__item { position: relative; }
+  .pj-nav__link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--pj-brown);
+    text-decoration: none;
+    font-family: var(--pj-font);
+    white-space: nowrap;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+  .pj-nav__link:hover, .pj-nav__link.is-active {
+    color: var(--pj-orange);
+    border-bottom-color: var(--pj-orange);
+  }
+  .pj-nav__link svg {
+    width: 1rem; height: 1rem;
+    fill: none; stroke: currentColor;
+    stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+    transition: transform 0.2s;
+  }
+  .pj-nav__item:hover .pj-nav__link svg { transform: rotate(180deg); }
+
+  /* ── Dropdown ── */
+  .pj-dropdown {
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    left: 0;
+    background: var(--pj-cream);
+    border: 1px solid rgba(74,44,10,0.12);
+    border-radius: 0.4rem;
+    box-shadow: 0 8px 24px rgba(74,44,10,0.12);
+    min-width: 18rem;
+    padding: 0.6rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.6rem);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    z-index: 200;
+  }
+  .pj-nav__item:hover .pj-dropdown,
+  .pj-nav__item:focus-within .pj-dropdown {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .pj-dropdown a {
+    display: block;
+    padding: 0.9rem 1.6rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--pj-brown);
+    text-decoration: none;
+    font-family: var(--pj-font);
+    transition: background 0.15s, color 0.15s;
+  }
+  .pj-dropdown a:hover { background: rgba(200,101,27,0.08); color: var(--pj-orange); }
+
+  /* ── Right icons ── */
+  .pj-header__right {
+    display: flex; flex-direction: row; align-items: center;
+    gap: 0.8rem; flex-shrink: 0;
+  }
+  .pj-header__country {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 1.2rem; font-weight: 600; color: var(--pj-brown);
+    font-family: var(--pj-font); padding: 0.4rem 0.8rem;
+    border: 1px solid rgba(74,44,10,0.2); border-radius: 0.3rem;
+    text-decoration: none;
+  }
+  .pj-header__icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 3.6rem; height: 3.6rem;
+    color: var(--pj-brown); text-decoration: none;
+    position: relative; transition: color 0.2s;
+  }
+  .pj-header__icon:hover { color: var(--pj-orange); }
+  .pj-header__icon svg {
+    width: 2.2rem; height: 2.2rem;
+    fill: none; stroke: currentColor;
+    stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .pj-cart-count {
+    position: absolute; top: 0.2rem; right: 0.2rem;
+    background: var(--pj-orange); color: var(--pj-cream);
+    font-size: 1rem; font-weight: 700;
+    width: 1.6rem; height: 1.6rem; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; line-height: 1;
+  }
+
+  /* ── Mobile hamburger ── */
+  .pj-header__burger {
+    display: none; flex-direction: column; gap: 0.5rem;
+    background: none; border: none; cursor: pointer; padding: 0.4rem;
+    flex-shrink: 0;
+  }
+  .pj-header__burger span {
+    display: block; width: 2.4rem; height: 0.2rem;
+    background: var(--pj-brown); border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  /* ── Mobile drawer ── */
+  .pj-mobile-nav { display: none; position: fixed; inset: 0; z-index: 9999; }
+  .pj-mobile-nav.is-open { display: block; }
+  .pj-mobile-nav__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+  .pj-mobile-nav__drawer {
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: min(32rem, 90vw); background: var(--pj-cream);
+    padding: 2rem; overflow-y: auto; display: flex; flex-direction: column;
+  }
+  .pj-mobile-nav__close {
+    align-self: flex-end; background: none; border: none;
+    font-size: 2.8rem; color: var(--pj-brown); cursor: pointer;
+    padding: 0; line-height: 1; margin-bottom: 1.6rem;
+  }
+  .pj-mobile-nav__list { list-style: none; padding: 0; margin: 0; }
+  .pj-mobile-nav__list a {
+    display: block; padding: 1.2rem 0;
+    font-size: 1.5rem; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--pj-brown); text-decoration: none;
+    border-bottom: 1px solid rgba(74,44,10,0.1); font-family: var(--pj-font);
+  }
+  .pj-mobile-nav__list a:hover { color: var(--pj-orange); }
+  .pj-mobile-sub { padding-left: 1.6rem; }
+  .pj-mobile-sub a {
+    font-size: 1.3rem !important; font-weight: 500 !important;
+    text-transform: none !important; letter-spacing: 0 !important;
+    color: rgba(74,44,10,0.7) !important;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 989px) {
+    .pj-nav { display: none; }
+    .pj-header__country { display: none; }
+    .pj-header__burger { display: flex; }
+    .pj-header__inner { height: 6rem; }
+  }
+  @media (max-width: 480px) {
+    .pj-announce { gap: 1.2rem; padding: 0.6rem 1rem; }
+    .pj-announce__item { font-size: 1.1rem; }
   }
 {%- endstyle -%}
 
-<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+{%- comment -%}
+  CRITICAL FIX: Everything is wrapped in .pj-site-header (display:block; width:100%)
+  This ensures the announcement bar stacks ABOVE the nav bar, even when
+  Dawn's header group puts things in a flex row.
+{%- endcomment -%}
+<div class="pj-site-header">
 
-{%- liquid
-  for block in section.blocks
-    if block.type == '@app'
-      assign has_app_block = true
-    endif
-  endfor
--%}
+  <!-- ① Announcement Bar -->
+  {%- if section.settings.show_announcement -%}
+  <div class="pj-announce">
+    <span class="pj-announce__item">
+      <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h5l3 5v3h-8V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      {{ section.settings.announce_text_1 | default: 'Free shipping on orders above $50' }}
+    </span>
+    <a href="{{ section.settings.announce_link_2 | default: '#' }}" class="pj-announce__item">
+      <svg viewBox="0 0 24 24"><path d="M21 10H7"/><path d="M21 6H3"/><path d="M21 14H3"/><path d="M21 18H7"/></svg>
+      {{ section.settings.announce_text_2 | default: 'Track your order' }}
+    </a>
+    <a href="tel:{{ section.settings.phone | default: '+18138087639' }}" class="pj-announce__item">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 5.99 5.99l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      {{ section.settings.phone | default: '+1 813-808-7639' }}
+    </a>
+    <a href="mailto:{{ section.settings.email | default: 'info@pauljohncaffeine.com' }}" class="pj-announce__item">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      {{ section.settings.email | default: 'info@pauljohncaffeine.com' }}
+    </a>
+  </div>
+  {%- endif -%}
 
-{% liquid
-  assign header_tag = 'div'
+  <!-- ② Main Header Bar -->
+  <header class="pj-header" role="banner">
+    <div class="pj-header__inner">
 
-  if section.settings.sticky_header_type != 'none'
-    assign header_tag = 'sticky-header'
-  endif
-%}
+      <!-- Mobile burger (left on mobile) -->
+      <button class="pj-header__burger" id="pjBurger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
 
-<{{ header_tag }} {% if header_tag == 'sticky-header' %}data-sticky-type="{{ section.settings.sticky_header_type }}"{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
-  {%- liquid
-    assign social_links = false
-    assign localization_forms = false
-
-    if settings.social_twitter_link != blank or settings.social_facebook_link != blank or settings.social_pinterest_link != blank or settings.social_instagram_link != blank or settings.social_youtube_link != blank or settings.social_vimeo_link != blank or settings.social_tiktok_link != blank or settings.social_tumblr_link != blank or settings.social_snapchat_link != blank
-      assign social_links = true
-    endif
-
-    if localization.available_countries.size > 1 and section.settings.enable_country_selector or section.settings.enable_language_selector and localization.available_languages.size > 1
-      assign localization_forms = true
-    endif
-  -%}
-  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
-    {%- liquid
-      if section.settings.menu != blank
-        render 'header-drawer'
-      endif
-
-      if section.settings.logo_position == 'top-center' or section.settings.menu == blank
-        render 'header-search', input_id: 'Search-In-Modal-1'
-      endif
-    -%}
-
-    {%- if section.settings.logo_position != 'middle-center' -%}
-      {%- if request.page_type == 'index' -%}
-        <h1 class="header__heading">
-      {%- endif -%}
-          <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-            {%- if settings.logo != blank -%}
-              <div class="header__heading-logo-wrapper">
-                {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-                {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-                {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
-                {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-                {{ settings.logo | image_url: width: 600 | image_tag:
-                  class: 'header__heading-logo motion-reduce',
-                  widths: widths,
-                  height: logo_height,
-                  width: settings.logo_width,
-                  alt: logo_alt,
-                  sizes: sizes,
-                  preload: true
-                }}
-              </div>
-            {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
-            {%- endif -%}
-          </a>
-      {%- if request.page_type == 'index' -%}
-        </h1>
-      {%- endif -%}
-    {%- endif -%}
-
-    {%- liquid
-      if section.settings.menu != blank
-        if section.settings.menu_type_desktop == 'dropdown'
-          render 'header-dropdown-menu'
-        elsif section.settings.menu_type_desktop != 'drawer'
-          render 'header-mega-menu'
-        endif
-      endif
-    %}
-
-    {%- if section.settings.logo_position == 'middle-center' -%}
-      {%- if request.page_type == 'index' -%}
-        <h1 class="header__heading">
-      {%- endif -%}
-          <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-            {%- if settings.logo != blank -%}
-              <div class="header__heading-logo-wrapper">
-                {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-                {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-                {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
-                {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-                {{ settings.logo | image_url: width: 600 | image_tag:
-                  class: 'header__heading-logo',
-                  widths: widths,
-                  height: logo_height,
-                  width: settings.logo_width,
-                  alt: logo_alt,
-                  sizes: sizes,
-                  preload: true
-                }}
-              </div>
-            {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
-            {%- endif -%}
-          </a>
-      {%- if request.page_type == 'index' -%}
-        </h1>
-      {%- endif -%}
-    {%- endif -%}
-
-    <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
-      <div class="desktop-localization-wrapper">
-        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-          <localization-form class="small-hide medium-hide" data-prevent-hide>
-            {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
-              <div>
-                <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {% endif %}
-
-        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-          <localization-form class="small-hide medium-hide" data-prevent-hide>
-            {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
-              <div>
-                <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
-                {%- render 'language-localization', localPosition: 'HeaderLanguage' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {%- endif -%}
-      </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
-
-      {%- if shop.customer_accounts_enabled -%}
-        <a
-          href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-          class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
-          rel="nofollow"
-        >
-          {%- if section.settings.enable_customer_avatar -%}
-            <account-icon>
-              {%- if customer and customer.has_avatar? -%}
-                {{ customer | avatar }}
-              {%- else -%}
-                <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
-              {%- endif -%}
-            </account-icon>
-          {%- else -%}
-            <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
-          {%- endif -%}
-          <span class="visually-hidden">
-            {%- liquid
-              if customer
-                echo 'customer.account_fallback' | t
-              else
-                echo 'customer.log_in' | t
-              endif
-            -%}
-          </span>
-        </a>
-      {%- endif -%}
-
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when '@app' -%}
-            {% render block %}
-        {%- endcase -%}
-      {%- endfor -%}
-
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-          {% if cart == empty %}
-            <span class="svg-wrapper">{{'icon-cart-empty.svg' | inline_asset_content }}</span>
-          {% else %}
-            <span class="svg-wrapper">{{'icon-cart.svg' | inline_asset_content }}</span>
-          {% endif %}
-        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-        {%- if cart != empty -%}
-          <div class="cart-count-bubble">
-            {%- if cart.item_count < 100 -%}
-              <span aria-hidden="true">{{ cart.item_count }}</span>
-            {%- endif -%}
-            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-          </div>
+      <!-- Logo -->
+      <a href="/" class="pj-header__logo" aria-label="{{ shop.name }}">
+        {%- if section.settings.logo != blank -%}
+          {{- section.settings.logo | image_url: width: 220 | image_tag:
+              loading: 'eager',
+              alt: shop.name,
+              style: 'height:5.6rem;width:auto;display:block;'
+          -}}
+        {%- else -%}
+          <!-- SVG fallback logo — upload real logo via: Theme Customizer → Header → Logo image -->
+          <svg class="pj-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="{{ shop.name }}">
+            <circle cx="50" cy="50" r="48" fill="#FDF6EC" stroke="#4A2C0A" stroke-width="2.5"/>
+            <circle cx="50" cy="50" r="42" fill="none" stroke="#4A2C0A" stroke-width="0.8"/>
+            <circle cx="50" cy="13" r="2" fill="#C8651B"/>
+            <circle cx="50" cy="87" r="2" fill="#C8651B"/>
+            <circle cx="13" cy="50" r="2" fill="#C8651B"/>
+            <circle cx="87" cy="50" r="2" fill="#C8651B"/>
+            <path id="pjTopArc" d="M 20,50 A 30,30 0 0,1 80,50" fill="none"/>
+            <text font-size="10" font-family="Georgia,serif" fill="#4A2C0A" font-weight="bold" letter-spacing="2.5">
+              <textPath href="#pjTopArc" startOffset="6%">PAUL JOHN</textPath>
+            </text>
+            <rect x="40" y="44" width="20" height="14" rx="2" fill="none" stroke="#4A2C0A" stroke-width="1.8"/>
+            <path d="M60,47 Q67,47 67,53 Q67,58 60,58" fill="none" stroke="#4A2C0A" stroke-width="1.8"/>
+            <line x1="38" y1="58" x2="62" y2="58" stroke="#4A2C0A" stroke-width="1.8"/>
+            <path d="M45,40 Q43,36 45,32" fill="none" stroke="#C8651B" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M50,40 Q48,36 50,32" fill="none" stroke="#C8651B" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M55,40 Q53,36 55,32" fill="none" stroke="#C8651B" stroke-width="1.4" stroke-linecap="round"/>
+            <path id="pjBottomArc" d="M 26,66 A 28,28 0 0,0 74,66" fill="none"/>
+            <text font-size="8.5" font-family="Georgia,serif" fill="#C8651B" font-weight="bold" letter-spacing="3">
+              <textPath href="#pjBottomArc" startOffset="8%">CAFFEINE</textPath>
+            </text>
+          </svg>
         {%- endif -%}
       </a>
+
+      <!-- Desktop Nav -->
+      <nav aria-label="Main navigation">
+        <ul class="pj-nav">
+          <li class="pj-nav__item">
+            <a href="/" class="pj-nav__link">Home</a>
+          </li>
+          <li class="pj-nav__item">
+            <a href="/pages/who-we-are" class="pj-nav__link">
+              Who We Are
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="pj-dropdown">
+              <a href="/pages/founder">Founder</a>
+            </div>
+          </li>
+          <li class="pj-nav__item">
+            <a href="/collections/all" class="pj-nav__link">
+              Shop
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="pj-dropdown">
+              <a href="/collections/all">Shop All</a>
+              <a href="/collections/coffee">Coffee</a>
+              <a href="/collections/drinkware">Drinkware</a>
+              <a href="/collections/brewers">Brewers</a>
+              <a href="/collections/gifting">Gifting</a>
+            </div>
+          </li>
+          <li class="pj-nav__item">
+            <a href="#" class="pj-nav__link">
+              Learn
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="pj-dropdown">
+              <a href="/pages/brewing-guides">Brewing Guides</a>
+              <a href="/pages/coffee-basics">Coffee Basics</a>
+              <a href="/pages/coffee-culture">Coffee Culture</a>
+            </div>
+          </li>
+          <li class="pj-nav__item">
+            <a href="/pages/wholesale" class="pj-nav__link">Wholesale</a>
+          </li>
+          <li class="pj-nav__item">
+            <a href="/pages/contact-us" class="pj-nav__link">Contact Us</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right icons -->
+      <div class="pj-header__right">
+        <a href="#" class="pj-header__country">🇺🇸 USA</a>
+        <a href="/account" class="pj-header__icon" aria-label="Account">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a href="/cart" class="pj-header__icon" aria-label="Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          {%- if cart.item_count > 0 -%}
+            <span class="pj-cart-count">{{ cart.item_count }}</span>
+          {%- endif -%}
+        </a>
+      </div>
+
     </div>
   </header>
-</{{ header_tag }}>
 
-{%- if settings.cart_type == "notification" -%}
-  {%- render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: section.settings.menu_type_desktop -%}
-{%- endif -%}
+</div><!-- end .pj-site-header -->
 
-{% javascript %}
-  class StickyHeader extends HTMLElement {
-    constructor() {
-      super();
-    }
+<!-- Mobile Nav Drawer (outside sticky wrapper so it overlays full page) -->
+<div class="pj-mobile-nav" id="pjMobileNav" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+  <div class="pj-mobile-nav__overlay" id="pjMobileOverlay"></div>
+  <div class="pj-mobile-nav__drawer">
+    <button class="pj-mobile-nav__close" id="pjMobileClose" aria-label="Close menu">&times;</button>
+    <ul class="pj-mobile-nav__list">
+      <li><a href="/">Home</a></li>
+      <li><a href="/pages/who-we-are">Who We Are</a></li>
+      <ul class="pj-mobile-sub">
+        <li><a href="/pages/founder">Founder</a></li>
+      </ul>
+      <li><a href="/collections/all">Shop</a></li>
+      <ul class="pj-mobile-sub">
+        <li><a href="/collections/all">Shop All</a></li>
+        <li><a href="/collections/coffee">Coffee</a></li>
+        <li><a href="/collections/drinkware">Drinkware</a></li>
+        <li><a href="/collections/brewers">Brewers</a></li>
+        <li><a href="/collections/gifting">Gifting</a></li>
+      </ul>
+      <li><a href="#">Learn</a></li>
+      <ul class="pj-mobile-sub">
+        <li><a href="/pages/brewing-guides">Brewing Guides</a></li>
+        <li><a href="/pages/coffee-basics">Coffee Basics</a></li>
+        <li><a href="/pages/coffee-culture">Coffee Culture</a></li>
+      </ul>
+      <li><a href="/pages/wholesale">Wholesale</a></li>
+      <li><a href="/pages/contact-us">Contact Us</a></li>
+    </ul>
+  </div>
+</div>
 
-    connectedCallback() {
-      this.header = document.querySelector('.section-header');
-      this.headerIsAlwaysSticky = this.getAttribute('data-sticky-type') === 'always' || this.getAttribute('data-sticky-type') === 'reduce-logo-size';
-      this.headerBounds = {};
-
-      this.setHeaderHeight();
-
-      window.matchMedia('(max-width: 990px)').addEventListener('change', this.setHeaderHeight.bind(this));
-
-      if (this.headerIsAlwaysSticky) {
-        this.header.classList.add('shopify-section-header-sticky');
-      };
-
-      this.currentScrollTop = 0;
-      this.preventReveal = false;
-      this.predictiveSearch = this.querySelector('predictive-search');
-
-      this.onScrollHandler = this.onScroll.bind(this);
-      this.hideHeaderOnScrollUp = () => this.preventReveal = true;
-
-      this.addEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
-      window.addEventListener('scroll', this.onScrollHandler, false);
-
-      this.createObserver();
-    }
-
-    setHeaderHeight() {
-      document.documentElement.style.setProperty('--header-height', `${this.header.offsetHeight}px`);
-    }
-
-    disconnectedCallback() {
-      this.removeEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
-      window.removeEventListener('scroll', this.onScrollHandler);
-    }
-
-    createObserver() {
-      let observer = new IntersectionObserver((entries, observer) => {
-        this.headerBounds = entries[0].intersectionRect;
-        observer.disconnect();
-      });
-
-      observer.observe(this.header);
-    }
-
-    onScroll() {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-      if (this.predictiveSearch && this.predictiveSearch.isOpen) return;
-
-      if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
-        this.header.classList.add('scrolled-past-header');
-        if (this.preventHide) return;
-        requestAnimationFrame(this.hide.bind(this));
-      } else if (scrollTop < this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
-        this.header.classList.add('scrolled-past-header');
-        if (!this.preventReveal) {
-          requestAnimationFrame(this.reveal.bind(this));
-        } else {
-          window.clearTimeout(this.isScrolling);
-
-          this.isScrolling = setTimeout(() => {
-            this.preventReveal = false;
-          }, 66);
-
-          requestAnimationFrame(this.hide.bind(this));
-        }
-      } else if (scrollTop <= this.headerBounds.top) {
-        this.header.classList.remove('scrolled-past-header');
-        requestAnimationFrame(this.reset.bind(this));
-      }
-
-      this.currentScrollTop = scrollTop;
-    }
-
-    hide() {
-      if (this.headerIsAlwaysSticky) return;
-      this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky');
-      this.closeMenuDisclosure();
-      this.closeSearchModal();
-    }
-
-    reveal() {
-      if (this.headerIsAlwaysSticky) return;
-      this.header.classList.add('shopify-section-header-sticky', 'animate');
-      this.header.classList.remove('shopify-section-header-hidden');
-    }
-
-    reset() {
-      if (this.headerIsAlwaysSticky) return;
-      this.header.classList.remove('shopify-section-header-hidden', 'shopify-section-header-sticky', 'animate');
-    }
-
-    closeMenuDisclosure() {
-      this.disclosures = this.disclosures || this.header.querySelectorAll('header-menu');
-      this.disclosures.forEach(disclosure => disclosure.close());
-    }
-
-    closeSearchModal() {
-      this.searchModal = this.searchModal || this.header.querySelector('details-modal');
-      this.searchModal.close(false);
-    }
-  }
-
-  customElements.define('sticky-header', StickyHeader);
-{% endjavascript %}
-
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "Organization",
-    "name": {{ shop.name | json }},
-    {% if settings.logo %}
-      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
-    {% endif %}
-    "sameAs": [
-      {{ settings.social_twitter_link | json }},
-      {{ settings.social_facebook_link | json }},
-      {{ settings.social_pinterest_link | json }},
-      {{ settings.social_instagram_link | json }},
-      {{ settings.social_tiktok_link | json }},
-      {{ settings.social_tumblr_link | json }},
-      {{ settings.social_snapchat_link | json }},
-      {{ settings.social_youtube_link | json }},
-      {{ settings.social_vimeo_link | json }}
-    ],
-    "url": {{ request.origin | append: page.url | json }}
-  }
+<script>
+(function(){
+  var burger  = document.getElementById('pjBurger');
+  var nav     = document.getElementById('pjMobileNav');
+  var overlay = document.getElementById('pjMobileOverlay');
+  var close   = document.getElementById('pjMobileClose');
+  function openNav()  { nav.classList.add('is-open'); burger.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+  function closeNav() { nav.classList.remove('is-open'); burger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+  if(burger)  burger.addEventListener('click', openNav);
+  if(close)   close.addEventListener('click', closeNav);
+  if(overlay) overlay.addEventListener('click', closeNav);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeNav(); });
+})();
 </script>
-
-{%- if request.page_type == 'index' -%}
-  {% assign potential_action_target = request.origin | append: routes.search_url | append: "?q={search_term_string}" %}
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": {{ shop.name | json }},
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {{ potential_action_target | json }},
-        "query-input": "required name=search_term_string"
-      },
-      "url": {{ request.origin | append: page.url | json }}
-    }
-  </script>
-{%- endif -%}
 
 {% schema %}
 {
-  "name": "t:sections.header.name",
-  "class": "section-header",
-  "max_blocks": 3,
+  "name": "PJ Header",
+  "class": "pj-header-section",
+  "enabled_on": { "groups": ["header"] },
   "settings": [
     {
-      "type": "select",
-      "id": "logo_position",
-      "options": [
-        {
-          "value": "top-left",
-          "label": "t:sections.header.settings.logo_position.options__2.label"
-        },
-        {
-          "value": "top-center",
-          "label": "t:sections.header.settings.logo_position.options__3.label"
-        },
-        {
-          "value": "middle-left",
-          "label": "t:sections.header.settings.logo_position.options__1.label"
-        },
-        {
-          "value": "middle-center",
-          "label": "t:sections.header.settings.logo_position.options__4.label"
-        }
-      ],
-      "default": "middle-left",
-      "label": "t:sections.header.settings.logo_position.label",
-      "info": "t:sections.header.settings.logo_help.content"
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image",
+      "info": "Upload your logo here. Recommended: transparent PNG, min 240px tall. SVG also works great."
     },
-    {
-      "type": "select",
-      "id": "mobile_logo_position",
-      "options": [
-        {
-          "value": "center",
-          "label": "t:sections.header.settings.mobile_logo_position.options__1.label"
-        },
-        {
-          "value": "left",
-          "label": "t:sections.header.settings.mobile_logo_position.options__2.label"
-        }
-      ],
-      "default": "center",
-      "label": "t:sections.header.settings.mobile_logo_position.label"
-    },    
-    {
-      "type": "link_list",
-      "id": "menu",
-      "default": "main-menu",
-      "label": "t:sections.header.settings.menu.label"
-    },
-    {
-      "type": "select",
-      "id": "menu_type_desktop",
-      "options": [
-        {
-          "value": "dropdown",
-          "label": "t:sections.header.settings.menu_type_desktop.options__1.label"
-        },
-        {
-          "value": "mega",
-          "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
-        },
-        {
-          "value": "drawer",
-          "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
-        }
-      ],
-      "default": "dropdown",
-      "label": "t:sections.header.settings.menu_type_desktop.label"
-    },
-    {
-      "type": "select",
-      "id": "sticky_header_type",
-      "options": [
-        {
-          "value": "none",
-          "label": "t:sections.header.settings.sticky_header_type.options__1.label"
-        },
-        {
-          "value": "on-scroll-up",
-          "label": "t:sections.header.settings.sticky_header_type.options__2.label"
-        },
-        {
-          "value": "always",
-          "label": "t:sections.header.settings.sticky_header_type.options__3.label"
-        },
-        {
-          "value": "reduce-logo-size",
-          "label": "t:sections.header.settings.sticky_header_type.options__4.label"
-        }
-      ],
-      "default": "on-scroll-up",
-      "label": "t:sections.header.settings.sticky_header_type.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_line_separator",
-      "default": true,
-      "label": "t:sections.header.settings.show_line_separator.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.header__1.content"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
-    },
-    {
-      "type": "color_scheme",
-      "id": "menu_color_scheme",
-      "label": "t:sections.header.settings.menu_color_scheme.label",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.header__utilities.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_country_selector",
-      "default": true,
-      "label": "t:sections.header.settings.enable_country_selector.label",
-      "info":"t:sections.header.settings.enable_country_selector.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_language_selector",
-      "default": true,
-      "label": "t:sections.header.settings.enable_language_selector.label",
-      "info":"t:sections.header.settings.enable_language_selector.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_customer_avatar",
-      "default": true,
-      "label": "t:sections.header.settings.enable_customer_avatar.label",
-      "info": "t:sections.header.settings.enable_customer_avatar.info"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.spacing"
-    },
-    {
-      "type": "range",
-      "id": "margin_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.header.settings.margin_bottom.label",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 36,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 36,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 20
-    }
+    { "type": "header", "content": "Announcement Bar" },
+    { "type": "checkbox", "id": "show_announcement", "label": "Show announcement bar", "default": true },
+    { "type": "text", "id": "announce_text_1", "label": "Shipping message", "default": "Free shipping on orders above $50" },
+    { "type": "text", "id": "announce_text_2", "label": "Track order label", "default": "Track your order" },
+    { "type": "url",  "id": "announce_link_2", "label": "Track order link" },
+    { "type": "text", "id": "phone", "label": "Phone number", "default": "+1 813-808-7639" },
+    { "type": "text", "id": "email", "label": "Email address", "default": "info@pauljohncaffeine.com" }
   ],
-  "blocks": [
-    {
-      "type": "@app"
-    }
-  ]
+  "presets": [{ "name": "PJ Header" }]
 }
 {% endschema %}

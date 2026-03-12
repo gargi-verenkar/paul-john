@@ -1,0 +1,179 @@
+{%- style -%}
+  .pj-brand-story {
+    background: var(--pj-cream);
+  }
+  .pj-brand-story__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 54rem;
+  }
+  @media (min-width: 990px) {
+    .pj-brand-story__layout {
+      grid-template-columns: 60% 40%;
+    }
+  }
+  .pj-brand-story__image {
+    position: relative;
+    overflow: hidden;
+    min-height: 36rem;
+    background: #d4b896;
+  }
+  .pj-brand-story__image img,
+  .pj-brand-story__image .placeholder-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .pj-brand-story__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5.6rem 4.8rem;
+    background: var(--pj-cream);
+  }
+  @media (max-width: 989px) {
+    .pj-brand-story__text { padding: 4rem 2.4rem; }
+  }
+  .pj-brand-story__eyebrow {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pj-orange);
+    display: block;
+    margin-bottom: 1.4rem;
+  }
+  .pj-brand-story__heading {
+    font-size: clamp(2.6rem, 3.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--pj-brown);
+    margin: 0 0 1.6rem;
+    letter-spacing: 0.02em;
+  }
+  .pj-brand-story__heading em {
+    font-style: normal;
+    color: var(--pj-orange);
+  }
+  .pj-brand-story__subheading {
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--pj-brown);
+    margin: 0 0 2rem;
+    opacity: 0.8;
+  }
+  .pj-brand-story__body {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: rgba(74,44,10,0.72);
+    margin: 0 0 1.4rem;
+  }
+  .pj-brand-story__body p { margin: 0; }
+  .pj-brand-story__btn {
+    align-self: flex-start;
+    margin-top: 2rem;
+  }
+{%- endstyle -%}
+
+<div class="pj-brand-story">
+  <div class="pj-brand-story__layout">
+
+    <div class="pj-brand-story__image">
+      <!-- Coffee beans image — replace this img tag's src with a Shopify CDN URL once real brand photos are ready -->
+      <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1400&q=90&auto=format&fit=crop" alt="South Indian coffee beans — Paul John Caffeine" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+
+    <div class="pj-brand-story__text">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="pj-brand-story__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="pj-brand-story__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="pj-brand-story__subheading">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.body_1 != blank -%}
+        <div class="pj-brand-story__body">{{ section.settings.body_1 }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.body_2 != blank -%}
+        <div class="pj-brand-story__body">{{ section.settings.body_2 }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.btn_label != blank -%}
+        <a
+          href="{{ section.settings.btn_link | default: '/pages/who-we-are' }}"
+          class="pj-btn pj-brand-story__btn"
+        >
+          {{ section.settings.btn_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand Story",
+  "tag": "section",
+  "class": "section-brand-story",
+  "disabled_on": { "groups": ["header","footer"] },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "DISCOVER THE RICH TASTE OF"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "PAUL JOHN <em>Caffeine</em>"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Experience the Best Indian Coffee Beans"
+    },
+    {
+      "type": "richtext",
+      "id": "body_1",
+      "label": "Body paragraph 1",
+      "default": "<p>Nestled in the lush hills of South India, Paul John Caffeine was born from a deep passion for authentic Indian coffee. We source only the finest arabica and robusta beans from shade-grown estates in Karnataka, Kerala, and Tamil Nadu.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "body_2",
+      "label": "Body paragraph 2",
+      "default": "<p>Every batch is carefully roasted in the USA to preserve the natural character of each bean — a cup that tells a story of heritage, craftsmanship, and the vibrant land where it all begins.</p>"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button label",
+      "default": "OUR STORY"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [{ "name": "Brand Story" }]
+}
+{% endschema %}

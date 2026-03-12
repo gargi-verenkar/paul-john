@@ -20,10 +20,10 @@
           }
         },
         "footer-2": {
-          "type": "text",
+          "type": "link_list",
           "settings": {
-            "heading": "Our mission",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+            "heading": "Coffee Varieties",
+            "menu": "footer"
           }
         }
       },

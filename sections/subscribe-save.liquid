@@ -1,0 +1,254 @@
+{%- style -%}
+  .pj-subs {
+    background: var(--pj-cream);
+    padding: var(--pj-section-padding-desktop) 2rem;
+  }
+  @media (max-width: 749px) {
+    .pj-subs { padding: var(--pj-section-padding-mobile) 2rem; }
+  }
+  .pj-subs__inner { max-width: 124rem; margin: 0 auto; }
+
+  /* Top hero row */
+  .pj-subs__hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.6rem;
+    align-items: center;
+    margin-bottom: 5.6rem;
+  }
+  @media (min-width: 990px) {
+    .pj-subs__hero { grid-template-columns: 1fr auto; gap: 6rem; }
+  }
+  .pj-subs__hero-text {}
+  .pj-subs__badge {
+    display: inline-block;
+    background: var(--pj-orange);
+    color: var(--pj-cream);
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.4rem;
+    border-radius: 2rem;
+    margin-bottom: 1.6rem;
+  }
+  .pj-subs__heading {
+    font-size: clamp(2.4rem, 3.5vw, 4.2rem);
+    font-weight: 400;
+    color: var(--pj-brown);
+    margin: 0 0 1.2rem;
+    line-height: 1.2;
+  }
+  .pj-subs__heading strong { font-weight: 800; }
+  .pj-subs__subheading {
+    font-size: 1.6rem;
+    color: rgba(74,44,10,0.7);
+    margin: 0 0 2.4rem;
+    line-height: 1.6;
+  }
+  .pj-subs__image-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pj-subs__image-wrap {
+    width: 28rem;
+    max-width: 100%;
+  }
+  .pj-subs__image-wrap img,
+  .pj-subs__image-wrap .placeholder-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Benefits grid */
+  .pj-subs__benefits {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    border-top: 1px solid rgba(74,44,10,0.12);
+    padding-top: 4rem;
+  }
+  @media (min-width: 600px)  { .pj-subs__benefits { grid-template-columns: repeat(2,1fr); } }
+  @media (min-width: 990px)  { .pj-subs__benefits { grid-template-columns: repeat(4,1fr); } }
+  .pj-subs__benefit { display: flex; flex-direction: column; gap: 0.8rem; }
+  .pj-subs__benefit-icon {
+    width: 4.4rem;
+    height: 4.4rem;
+    background: rgba(200,101,27,0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pj-orange);
+    margin-bottom: 0.4rem;
+  }
+  .pj-subs__benefit-icon svg {
+    width: 2.2rem; height: 2.2rem;
+    fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .pj-subs__benefit-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pj-brown);
+    line-height: 1.3;
+  }
+  .pj-subs__benefit-desc {
+    font-size: 1.4rem;
+    color: rgba(74,44,10,0.65);
+    line-height: 1.55;
+    margin: 0;
+  }
+{%- endstyle -%}
+
+<div class="pj-subs">
+  <div class="pj-subs__inner">
+
+    <div class="pj-subs__hero">
+      <div class="pj-subs__hero-text">
+        <span class="pj-subs__badge">10% OFF</span>
+        {%- if section.settings.heading != blank -%}
+          <h2 class="pj-subs__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p class="pj-subs__subheading">{{ section.settings.subheading | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.btn_label != blank -%}
+          <a href="{{ section.settings.btn_link | default: '/collections/all' }}" class="pj-btn">
+            {{ section.settings.btn_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div class="pj-subs__image-col">
+        <div class="pj-subs__image-wrap">
+          {%- if section.settings.image != blank -%}
+            {{
+              section.settings.image
+              | image_url: width: 600
+              | image_tag:
+                loading: 'lazy',
+                widths: '280,400,560',
+                alt: section.settings.image.alt | default: 'Coffee subscription'
+            }}
+          {%- else -%}
+            <!-- PLACEHOLDER: Replace via Theme Customizer → Subscribe & Save → Coffee image -->
+            <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600&q=85&auto=format&fit=crop" alt="Paul John Caffeine coffee bag" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block;">
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="pj-subs__benefits">
+      {%- for block in section.blocks -%}
+        <div class="pj-subs__benefit" {{ block.shopify_attributes }}>
+          <div class="pj-subs__benefit-icon">
+            {%- case block.settings.icon -%}
+              {%- when 'clock' -%}
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              {%- when 'toggle' -%}
+                <svg viewBox="0 0 24 24"><rect x="1" y="5" width="22" height="14" rx="7"/><circle cx="16" cy="12" r="3"/></svg>
+              {%- when 'percent' -%}
+                <svg viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+              {%- when 'sliders' -%}
+                <svg viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+              {%- else -%}
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            {%- endcase -%}
+          </div>
+          <span class="pj-subs__benefit-title">{{ block.settings.title | escape }}</span>
+          {%- if block.settings.desc != blank -%}
+            <p class="pj-subs__benefit-desc">{{ block.settings.desc | escape }}</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Subscribe & Save",
+  "tag": "section",
+  "class": "section-subscribe-save",
+  "disabled_on": { "groups": ["header","footer"] },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "subscribe & Save <strong>up to 10%</strong>"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Save up to 10% by subscribing to Paul John Caffeine products"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button label",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Coffee bag image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "clock",   "label": "Clock" },
+            { "value": "toggle",  "label": "Toggle" },
+            { "value": "percent", "label": "Percent" },
+            { "value": "sliders", "label": "Sliders" },
+            { "value": "check",   "label": "Check" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Benefit Title"
+        },
+        {
+          "type": "text",
+          "id": "desc",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subscribe & Save",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "clock",   "title": "AUTOMATIC timely DELIVERY",  "desc": "Say goodbye to last-minute runs to the store" } },
+        { "type": "benefit", "settings": { "icon": "toggle",  "title": "YOU'RE IN CONTROL",           "desc": "Adjust, pause, or cancel anytime" } },
+        { "type": "benefit", "settings": { "icon": "percent", "title": "savor & save upto 10%",        "desc": "Get your coffee delivered as per choice of duration" } },
+        { "type": "benefit", "settings": { "icon": "sliders", "title": "Customize to Your Taste",      "desc": "Get your coffee delivered as per choice of duration" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

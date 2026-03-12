@@ -1,3 +1,55 @@
+/* =============================================
+   PAUL JOHN CAFFEINE — GLOBAL BRAND TOKENS
+   ============================================= */
+:root {
+  --pj-cream:  #FDF6EC;
+  --pj-brown:  #4A2C0A;
+  --pj-orange: #C8651B;
+  --pj-brown-dark: #2A1505;
+  --pj-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+
+  /* Section spacing */
+  --pj-section-padding-desktop: 6rem;
+  --pj-section-padding-mobile:  4rem;
+
+  /* Button base */
+  --pj-btn-bg:      var(--pj-orange);
+  --pj-btn-color:   var(--pj-cream);
+  --pj-btn-radius:  0.3rem;
+}
+
+/* Global PJ button style */
+.pj-btn {
+  display: inline-block;
+  padding: 1.3rem 3rem;
+  background: var(--pj-orange);
+  color: var(--pj-cream);
+  border: 2px solid var(--pj-orange);
+  border-radius: var(--pj-btn-radius);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.22s ease, color 0.22s ease;
+  font-family: var(--pj-font);
+}
+.pj-btn:hover,
+.pj-btn:focus-visible {
+  background: transparent;
+  color: var(--pj-orange);
+}
+.pj-btn--outline {
+  background: transparent;
+  color: var(--pj-cream);
+  border-color: var(--pj-cream);
+}
+.pj-btn--outline:hover {
+  background: var(--pj-cream);
+  color: var(--pj-brown);
+}
+
 :root {
   --alpha-button-background: 1;
   --alpha-button-border: 1;

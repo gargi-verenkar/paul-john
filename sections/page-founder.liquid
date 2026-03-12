@@ -1,0 +1,187 @@
+{%- style -%}
+  .pj-founder__hero {
+    position: relative; height: 42rem; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pj-founder__hero img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center;
+  }
+  .pj-founder__hero-overlay { position: absolute; inset: 0; background: rgba(30,12,2,0.48); }
+  .pj-founder__hero-content { position: relative; z-index: 2; text-align: center; color: #ffffff; }
+  .pj-founder__breadcrumb {
+    font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.8; margin-bottom: 1rem; font-family: var(--pj-font);
+    color: #ffffff !important;
+  }
+  .pj-founder__hero-title {
+    font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; margin: 0; font-family: var(--pj-font);
+    color: #ffffff !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  }
+
+  .pj-founder__body {
+    max-width: 130rem; margin: 0 auto; padding: 7rem 2rem;
+    display: grid; grid-template-columns: 1fr 40rem; gap: 7rem; align-items: start;
+  }
+  @media (max-width: 899px) { .pj-founder__body { grid-template-columns: 1fr; gap: 4rem; } }
+
+  .pj-founder__bio h1 {
+    font-size: 2.4rem; font-weight: 700; color: var(--pj-brown);
+    margin: 0 0 0.6rem; font-family: var(--pj-font);
+  }
+  .pj-founder__bio h2 {
+    font-size: 1.5rem; font-weight: 600; color: var(--pj-orange);
+    margin: 0 0 2.4rem; font-family: var(--pj-font);
+  }
+  .pj-founder__bio p {
+    font-size: 1.5rem; line-height: 1.8; color: rgba(74,44,10,0.8);
+    margin: 0 0 1.6rem; font-family: var(--pj-font);
+  }
+  .pj-founder__portrait { border-radius: 0.4rem; overflow: hidden; position: sticky; top: 10rem; }
+  .pj-founder__portrait img { width: 100%; display: block; }
+
+  /* Spotlight */
+  .pj-founder__spotlight {
+    background: var(--pj-brown); padding: 6rem 2rem; text-align: center;
+  }
+  .pj-founder__spotlight h2 {
+    font-size: 2rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--pj-cream);
+    margin: 0 0 1.2rem; font-family: var(--pj-font);
+  }
+  .pj-founder__spotlight p {
+    font-size: 1.45rem; color: rgba(253,246,236,0.75); max-width: 70rem;
+    margin: 0 auto; line-height: 1.7; font-family: var(--pj-font);
+  }
+
+  /* Featured on */
+  .pj-founder__featured { padding: 6rem 2rem; text-align: center; background: var(--pj-cream); }
+  .pj-founder__featured h2 {
+    font-size: 1.8rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--pj-brown);
+    margin: 0 0 3.2rem; font-family: var(--pj-font);
+  }
+  .pj-founder__press-logos {
+    display: flex; align-items: center; justify-content: center;
+    gap: 4rem; flex-wrap: wrap; max-width: 90rem; margin: 0 auto;
+  }
+  .pj-founder__press-logo {
+    height: 4rem; width: auto; object-fit: contain;
+    filter: grayscale(1) opacity(0.6);
+    transition: filter 0.2s;
+  }
+  .pj-founder__press-logo:hover { filter: grayscale(0) opacity(1); }
+  /* Placeholder press logo badge */
+  .pj-press-placeholder {
+    display: flex; align-items: center; justify-content: center;
+    height: 4rem; padding: 0 2rem;
+    border: 1px solid rgba(74,44,10,0.2); border-radius: 0.3rem;
+    font-size: 1.3rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(74,44,10,0.5);
+    font-family: var(--pj-font);
+  }
+{%- endstyle -%}
+
+<!-- Hero -->
+<div class="pj-founder__hero">
+  {%- if section.settings.hero_image != blank -%}
+    {{ section.settings.hero_image | image_url: width: 1600 | image_tag: loading: 'eager', alt: 'Founder' }}
+  {%- else -%}
+    <!-- PLACEHOLDER: Replace with founder hero image in Theme Customizer -->
+    <img
+      src="https://oldmadrasmarket.com/cdn/shop/files/AdobeStock_482039247.jpg?v=1749288088&width=1946"
+      alt="Coffee farm — Paul John Caffeine Founder"
+      loading="eager"
+    >
+  {%- endif -%}
+  <div class="pj-founder__hero-overlay"></div>
+  <div class="pj-founder__hero-content">
+    <p class="pj-founder__breadcrumb">Home / Founder</p>
+    <h1 class="pj-founder__hero-title">Founder</h1>
+  </div>
+</div>
+
+<!-- Bio + Portrait -->
+<div class="pj-founder__body">
+  <div class="pj-founder__bio">
+    <h1>{{ section.settings.name | default: "Meet Shonali Paul: Founder of Paul John Caffeine" }}</h1>
+    <h2>{{ section.settings.subtitle | default: "From India to the USA: Transforming Coffee Culture with Authentic Indian Coffee Blends by Shonali Paul" }}</h2>
+    <p>{{ section.settings.bio_1 | default: "Coffee is the elixir of life. A morning ritual for some, a daily pick-me-up for many, and for one person, a chance to connect the West to the East. Born in Bangalore in the South of India, Shonali Paul discovered her love for coffee at a very young age. During visits to her grandfather's estate in Coorg, Shonali experienced a coffee that was bold yet creamy, uplifting yet relaxing – a complex set of emotions crowned with a light, airy 'froth' from the blended sweetened milk atop the overnight brewed 'decoction'. This was the essence of South Indian coffee, a brew so distinctive that it inspired her to bring it to the US where she now resides." }}</p>
+    <p>{{ section.settings.bio_2 | default: "Driven by her passion for coffee, Shonali Paul founded Paul John Caffeine in 2023. The company sources only the finest, single-origin coffee beans from Karnataka, which are roasted, ground, and packaged in Florida. In contrast to the more common coffees from South America and Africa, Shonali saw an opportunity to infuse the fast-paced U.S. market with the slow, mindful enjoyment of Indian coffee." }}</p>
+    <p>{{ section.settings.bio_3 | default: "Under Shonali's leadership, Paul John Caffeine introduced a collection of distinctive coffee blends, all crafted from carefully sourced Indian origin coffee. With a deep commitment to quality, the company highlights the authenticity of single-origin coffee, roasting the finest beans from India, in Florida. This dedication makes Paul John Caffeine one of the best Indian coffee roasters in Florida, bridging traditional South Indian coffee culture with the vibrant coffee scene in the USA." }}</p>
+    <p>{{ section.settings.bio_4 | default: "Each cup from Paul John Caffeine is an invitation to experience the unique Indian coffee flavors that reflect the rich heritage and craftsmanship of India's coffee-growing regions. Whether you're indulging in the bold yet smooth essence of these blends, Paul John Caffeine redefines what it means to enjoy South Indian coffee in the USA." }}</p>
+  </div>
+
+  <div class="pj-founder__portrait">
+    {%- if section.settings.portrait != blank -%}
+      {{ section.settings.portrait | image_url: width: 800 | image_tag: loading: 'lazy', alt: 'Shonali Paul — Founder' }}
+    {%- else -%}
+      <!-- PLACEHOLDER: Replace with Shonali Paul's portrait in Theme Customizer -->
+      <img
+        src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80&auto=format&fit=crop&crop=faces"
+        alt="Founder portrait placeholder — replace with Shonali Paul photo"
+        loading="lazy"
+      >
+    {%- endif -%}
+  </div>
+</div>
+
+<!-- In the Spotlight -->
+<div class="pj-founder__spotlight">
+  <h2>In the Spotlight: Paul John Caffeine in the Media</h2>
+  <p>Paul John Caffeine has captured attention across various media platforms, with notable features in leading publications. These articles highlight the brand's unique approach to authentic Indian coffee and its influence in transforming coffee culture in the U.S.</p>
+</div>
+
+<!-- Featured On -->
+<div class="pj-founder__featured">
+  <h2>Featured On</h2>
+  <div class="pj-founder__press-logos">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'press_logo' -%}
+        {%- if block.settings.logo_image != blank -%}
+          {{ block.settings.logo_image | image_url: width: 300 | image_tag:
+              loading: 'lazy',
+              class: 'pj-founder__press-logo',
+              alt: block.settings.publication_name | default: 'Press feature'
+          }}
+        {%- else -%}
+          <span class="pj-press-placeholder">{{ block.settings.publication_name | default: 'Publication' }}</span>
+        {%- endif -%}
+      {%- endif -%}
+    {%- else -%}
+      <!-- Default placeholder press logos until real logos are uploaded -->
+      <span class="pj-press-placeholder">BestLife</span>
+      <span class="pj-press-placeholder">Authority Magazine</span>
+      <span class="pj-press-placeholder">Daily Mom</span>
+      <span class="pj-press-placeholder">6sqft NYC</span>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Founder Page",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image", "label": "Hero background image" },
+    { "type": "image_picker", "id": "portrait",   "label": "Founder portrait photo" },
+    { "type": "text",     "id": "name",     "label": "Founder name heading", "default": "Meet Shonali Paul: Founder of Paul John Caffeine" },
+    { "type": "text",     "id": "subtitle", "label": "Subtitle", "default": "From India to the USA: Transforming Coffee Culture with Authentic Indian Coffee Blends" },
+    { "type": "textarea", "id": "bio_1",    "label": "Bio paragraph 1" },
+    { "type": "textarea", "id": "bio_2",    "label": "Bio paragraph 2" },
+    { "type": "textarea", "id": "bio_3",    "label": "Bio paragraph 3" },
+    { "type": "textarea", "id": "bio_4",    "label": "Bio paragraph 4" }
+  ],
+  "blocks": [
+    {
+      "type": "press_logo",
+      "name": "Press Logo",
+      "settings": [
+        { "type": "image_picker", "id": "logo_image",       "label": "Publication logo" },
+        { "type": "text",         "id": "publication_name", "label": "Publication name (fallback text)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Founder Page" }]
+}
+{% endschema %}

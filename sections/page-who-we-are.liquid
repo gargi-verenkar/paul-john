@@ -1,0 +1,189 @@
+{%- style -%}
+  .pj-wwa__hero {
+    position: relative; height: 42rem; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pj-wwa__hero img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .pj-wwa__hero-overlay {
+    position: absolute; inset: 0; background: rgba(30,12,2,0.52);
+  }
+  .pj-wwa__hero-content {
+    position: relative; z-index: 2; text-align: center; color: #ffffff;
+  }
+  .pj-wwa__breadcrumb {
+    font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.8; margin-bottom: 1rem; font-family: var(--pj-font);
+    color: #ffffff !important;
+  }
+  .pj-wwa__hero-title {
+    font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin: 0; font-family: var(--pj-font);
+    color: #ffffff !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  }
+
+  .pj-wwa__body {
+    max-width: 130rem; margin: 0 auto; padding: 7rem 2rem;
+    display: grid; grid-template-columns: 1fr 42rem; gap: 7rem; align-items: start;
+  }
+  @media (max-width: 899px) { .pj-wwa__body { grid-template-columns: 1fr; gap: 4rem; } }
+
+  .pj-wwa__story h2 {
+    font-size: 1.6rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--pj-brown);
+    margin: 0 0 1.6rem; font-family: var(--pj-font);
+  }
+  .pj-wwa__story h3 {
+    font-size: 2rem; font-weight: 700; color: var(--pj-brown);
+    margin: 3.2rem 0 0.8rem; font-family: var(--pj-font);
+  }
+  .pj-wwa__story p {
+    font-size: 1.5rem; line-height: 1.75; color: rgba(74,44,10,0.8);
+    margin: 0 0 1.4rem; font-family: var(--pj-font);
+  }
+
+  .pj-wwa__img-wrap {
+    border-radius: 0.4rem; overflow: hidden; position: sticky; top: 10rem;
+  }
+  .pj-wwa__img-wrap img { width: 100%; display: block; }
+
+  /* Trust badges */
+  .pj-wwa__badges {
+    background: #C4A882; padding: 5rem 2rem;
+  }
+  .pj-wwa__badges-inner {
+    max-width: 110rem; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    gap: 3.2rem; flex-wrap: wrap;
+  }
+  .pj-wwa-badge {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 1rem; text-align: center; max-width: 13rem;
+  }
+  .pj-wwa-badge__icon {
+    width: 7rem; height: 7rem; border-radius: 50%;
+    border: 1.5px solid rgba(74,44,10,0.4);
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(253,246,236,0.4);
+  }
+  .pj-wwa-badge__icon svg {
+    width: 3rem; height: 3rem;
+    fill: none; stroke: var(--pj-brown); stroke-width: 1.3;
+  }
+  .pj-wwa-badge__label {
+    font-size: 1.05rem; font-weight: 700; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--pj-brown); line-height: 1.4;
+    font-family: var(--pj-font);
+  }
+{%- endstyle -%}
+
+<!-- Hero -->
+<div class="pj-wwa__hero">
+  {%- if section.settings.hero_image != blank -%}
+    {{ section.settings.hero_image | image_url: width: 1600 | image_tag: loading: 'eager', alt: 'Who We Are' }}
+  {%- else -%}
+    <!-- PLACEHOLDER: Replace with a coffee plantation/nature image in Theme Customizer -->
+    <img
+      src="https://media.istockphoto.com/id/1426308030/photo/south-indian-filter-coffee-served-in-a-traditional-tumbler-or-cup-over-roasted-raw-beans.jpg?s=612x612&w=0&k=20&c=ELVrPPs4-9dXI6T9rrusrYQJ9op2IZg0vylfgbRUz_Q="
+      alt="Coffee plantation — Paul John Caffeine"
+      loading="eager"
+    >
+  {%- endif -%}
+  <div class="pj-wwa__hero-overlay"></div>
+  <div class="pj-wwa__hero-content">
+    <p class="pj-wwa__breadcrumb">Home / Who We Are</p>
+    <h1 class="pj-wwa__hero-title">Who We Are</h1>
+  </div>
+</div>
+
+<!-- Body -->
+<div class="pj-wwa__body">
+  <div class="pj-wwa__story">
+    <h2>Our Story</h2>
+    <p>{{ section.settings.story_intro | default: "Where some people see a brown beverage that is habitually consumed at the start of their day, we see a rainbow so colorful that it would make a unicorn blush. For us, coffee goes beyond the bean! It's the drink that wakes us up, it's the elixir that forges friendships, and the solution to most problems. Coffee is everything – and we love it, which is why we don't pack beans from just anywhere." }}</p>
+
+    <h3>{{ section.settings.heading_2 | default: "The Origin of Paul John Caffeine Company" }}</h3>
+    <p>{{ section.settings.body_2 | default: "The Paul John Caffeine Company produces coffee from select beans that are sourced predominantly from the luscious estates of Coorg in Karnataka, India. What was once largely uninhabitable till the mid-1800s, Coorg has come to be known as the 'Scotland of India' and also 'India's Coffee Cup'. The tiny Coorg district is hidden away in the steep slopes and deep valleys of one of the world's richest and most diverse ecological hotspots. The lush biomass, the rich soil, and the varied flora and fauna that co-exist among native fruit and spice trees amalgamate to produce a coffee bean that is like none other." }}</p>
+
+    <h3>{{ section.settings.heading_3 | default: "Our Mission" }}</h3>
+    <p>{{ section.settings.body_3 | default: "When we started the Paul John Caffeine Company, we set out to introduce the best Indian coffee beans to the rest of the world. At its helm, is founder Shonali Paul, one of the very few women in the male-dominated world of coffee. Together, we work with a number of estates in the South of India to find distinct flavor profiles that are grown with meticulous care and attention." }}</p>
+
+    <h3>{{ section.settings.heading_4 | default: "The Unique Flavor of Paul John South Indian Coffee Beans" }}</h3>
+    <p>{{ section.settings.body_4 | default: "Shade-grown Indian coffee beans develop a strong and robust flavor due to their slow growth and maturation process which allows them to have a highly complex flavor profile, and low acidic content. The roots of neighboring fruit and spice plants that coexist on these lavish estates merge beneath the earth and provide intense depth and flavor to the coffee bean giving it a rich and complex taste profile – this truly isn't your average cuppa joe!" }}</p>
+
+    <h3>{{ section.settings.heading_5 | default: "Brewing Perfection – Enjoying South Indian Filter Coffee" }}</h3>
+    <p>{{ section.settings.body_5 | default: "Consumed by the slow espresso 'decoction' and the tuft of creamy froth atop a cup of South Indian filter coffee, we chose to reveal this hidden taste of India by providing the complete experience. Beyond just the slow brew of 'kappi', the rich and full-bodied Indian coffee is perfect for brewing in a Moka Pot, drip machine, French Press, or even as a pour-over. Multiple coffee blends to suit every taste, mood, and occasion, paired with the convenience of finding your favorite cuppa, and a bespoke collection of coffee-inspired accouterments round out the Paul John Caffeine Company dictum." }}</p>
+  </div>
+
+  <div class="pj-wwa__img-wrap">
+    {%- if section.settings.story_image != blank -%}
+      {{ section.settings.story_image | image_url: width: 840 | image_tag: loading: 'lazy', alt: 'Our coffee story' }}
+    {%- else -%}
+      <!-- PLACEHOLDER: Replace with brand story image in Theme Customizer -->
+      <img
+        src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?w=840&q=80&auto=format&fit=crop"
+        alt="Coffee beans close up — Paul John Caffeine"
+        loading="lazy"
+      >
+    {%- endif -%}
+  </div>
+</div>
+
+<!-- Trust Badges -->
+<div class="pj-wwa__badges">
+  <div class="pj-wwa__badges-inner">
+    <div class="pj-wwa-badge">
+      <div class="pj-wwa-badge__icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      <span class="pj-wwa-badge__label">Minority Women Owned Certified</span>
+    </div>
+    <div class="pj-wwa-badge">
+      <div class="pj-wwa-badge__icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 8v8M8 12h8"/></svg>
+      </div>
+      <span class="pj-wwa-badge__label">Handpicked &amp; Shade Grown</span>
+    </div>
+    <div class="pj-wwa-badge">
+      <div class="pj-wwa-badge__icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <span class="pj-wwa-badge__label">Kosher Certified</span>
+    </div>
+    <div class="pj-wwa-badge">
+      <div class="pj-wwa-badge__icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <span class="pj-wwa-badge__label">Premium Indian Grown Beans</span>
+    </div>
+    <div class="pj-wwa-badge">
+      <div class="pj-wwa-badge__icon">
+        <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      </div>
+      <span class="pj-wwa-badge__label">Freshly Roasted In The USA</span>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Who We Are",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image",  "label": "Hero background image" },
+    { "type": "image_picker", "id": "story_image", "label": "Story side image" },
+    { "type": "text",     "id": "story_intro", "label": "Opening paragraph" },
+    { "type": "text",     "id": "heading_2", "label": "Section 2 heading", "default": "The Origin of Paul John Caffeine Company" },
+    { "type": "textarea", "id": "body_2",    "label": "Section 2 body" },
+    { "type": "text",     "id": "heading_3", "label": "Section 3 heading", "default": "Our Mission" },
+    { "type": "textarea", "id": "body_3",    "label": "Section 3 body" },
+    { "type": "text",     "id": "heading_4", "label": "Section 4 heading", "default": "The Unique Flavor of Paul John South Indian Coffee Beans" },
+    { "type": "textarea", "id": "body_4",    "label": "Section 4 body" },
+    { "type": "text",     "id": "heading_5", "label": "Section 5 heading", "default": "Brewing Perfection – Enjoying South Indian Filter Coffee" },
+    { "type": "textarea", "id": "body_5",    "label": "Section 5 body" }
+  ],
+  "presets": [{ "name": "Who We Are Page" }]
+}
+{% endschema %}

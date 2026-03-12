@@ -1,0 +1,192 @@
+{%- style -%}
+  :root { --pj-cream:#FDF6EC; --pj-brown:#4A2C0A; --pj-orange:#C8651B; --pj-font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
+
+  /* Hero */
+  .pj-cc__hero { position:relative; height:44rem; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+  .pj-cc__hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .pj-cc__hero-overlay { position:absolute; inset:0; background:rgba(20,8,0,0.55); }
+  .pj-cc__hero-content { position:relative; z-index:2; text-align:center; }
+  .pj-cc__breadcrumb { font-size:1.2rem; letter-spacing:0.1em; text-transform:uppercase; color:#ffffff !important; opacity:0.8; margin-bottom:1rem; font-family:var(--pj-font); }
+  .pj-cc__hero-title { font-size:clamp(2.8rem,5vw,5rem); font-weight:700; letter-spacing:0.15em; text-transform:uppercase; margin:0; color:#ffffff !important; text-shadow:0 2px 12px rgba(0,0,0,0.4); font-family:var(--pj-font); }
+
+  /* Sections */
+  .pj-cc__section { max-width:130rem; margin:0 auto; padding:5rem 2rem; }
+  .pj-cc__section h2 { font-size:1.9rem; font-weight:800; text-transform:uppercase; letter-spacing:0.07em; color:var(--pj-brown); margin:0 0 1.6rem; font-family:var(--pj-font); }
+  .pj-cc__section h3 { font-size:1.5rem; font-weight:700; color:var(--pj-brown); margin:2.4rem 0 0.8rem; font-family:var(--pj-font); }
+  .pj-cc__section p { font-size:1.45rem; line-height:1.75; color:rgba(74,44,10,0.82); margin:0 0 1.2rem; font-family:var(--pj-font); }
+  .pj-cc__section ul, .pj-cc__section ol { padding-left:2rem; margin:0 0 1.2rem; }
+  .pj-cc__section li { font-size:1.4rem; line-height:1.7; color:rgba(74,44,10,0.8); margin-bottom:0.5rem; font-family:var(--pj-font); }
+
+  /* Traditions grid - 2 col with image -->
+  .pj-cc__traditions { max-width:130rem; margin:0 auto; padding:0 2rem 5rem; display:grid; grid-template-columns:1fr 36rem; gap:5rem; align-items:start; }
+  @media(max-width:899px){ .pj-cc__traditions{ grid-template-columns:1fr; } }
+  .pj-cc__traditions img { width:100%; border-radius:0.4rem; display:block; position:sticky; top:10rem; }
+
+  .pj-cc__tradition-item { margin-bottom:2.4rem; padding-bottom:2.4rem; border-bottom:1px solid rgba(74,44,10,0.1); }
+  .pj-cc__tradition-item:last-child { border-bottom:none; margin-bottom:0; }
+  .pj-cc__tradition-num { font-size:1.1rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--pj-orange); display:block; margin-bottom:0.4rem; font-family:var(--pj-font); }
+  .pj-cc__tradition-title { font-size:1.5rem; font-weight:700; color:var(--pj-brown); margin:0 0 0.8rem; font-family:var(--pj-font); }
+  .pj-cc__tradition-body { font-size:1.4rem; line-height:1.72; color:rgba(74,44,10,0.8); margin:0 0 0.8rem; font-family:var(--pj-font); }
+  .pj-cc__recipe-label { font-size:1.2rem; font-weight:700; color:var(--pj-brown); letter-spacing:0.06em; text-transform:uppercase; margin:0.8rem 0 0.4rem; font-family:var(--pj-font); }
+  .pj-cc__recipe-steps { padding-left:1.8rem; margin:0; }
+  .pj-cc__recipe-steps li { font-size:1.3rem; line-height:1.65; color:rgba(74,44,10,0.75); margin-bottom:0.4rem; font-family:var(--pj-font); }
+
+  /* Dark sections */
+  .pj-cc__dark { background:var(--pj-brown); padding:5rem 2rem; }
+  .pj-cc__dark-inner { max-width:130rem; margin:0 auto; }
+  .pj-cc__dark h2 { font-size:1.9rem; font-weight:800; text-transform:uppercase; letter-spacing:0.07em; color:#ffffff; margin:0 0 1.6rem; font-family:var(--pj-font); }
+  .pj-cc__dark h3 { font-size:1.5rem; font-weight:700; color:rgba(253,246,236,0.9); margin:2rem 0 0.8rem; font-family:var(--pj-font); }
+  .pj-cc__dark p { font-size:1.45rem; line-height:1.75; color:rgba(253,246,236,0.8); margin:0 0 1.2rem; font-family:var(--pj-font); }
+{%- endstyle -%}
+
+<!-- Hero -->
+<div class="pj-cc__hero">
+  {%- if section.settings.hero_image != blank -%}
+    {{ section.settings.hero_image | image_url: width: 1600 | image_tag: loading: 'eager', alt: 'Coffee Culture' }}
+  {%- else -%}
+    <img src="https://static.vecteezy.com/system/resources/previews/013/754/137/non_2x/south-indian-filter-coffee-served-in-a-traditional-brass-or-stainless-steel-cup-free-photo.jpg" alt="Coffee culture hero" loading="eager">
+  {%- endif -%}
+  <div class="pj-cc__hero-overlay"></div>
+  <div class="pj-cc__hero-content">
+    <p class="pj-cc__breadcrumb">Home / Coffee Culture</p>
+    <h1 class="pj-cc__hero-title">Coffee Culture</h1>
+  </div>
+</div>
+
+<!-- Intro -->
+<div class="pj-cc__section">
+  <h2>Coffee Culture: Exploring the World One Cup at a Time</h2>
+  <p>Coffee is more than just a drink — it's a global phenomenon that reflects the traditions, flavors, and lifestyles of different cultures. From the bustling streets of Italy to the serene coffee forests of Ethiopia, coffee plays a global role in connecting people and enhancing their daily routines. Let's dive into the fascinating world of coffee culture and discover how various countries celebrate this beloved beverage.</p>
+
+  <h3>Introduction to Global Coffee Culture</h3>
+  <p>Coffee is a universal language, transcending borders and uniting coffee lovers worldwide. Each country brings its own twist to this age-old tradition, turning a simple cup of coffee into an experience steeped in history, art, and social connection. From traditional brewing methods to social rituals, coffee is an integral part of many societies.</p>
+</div>
+
+<!-- Traditions -->
+<div class="pj-cc__traditions">
+  <div>
+    <h2 style="font-size:1.9rem;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:var(--pj-brown);margin:0 0 2rem;font-family:var(--pj-font);">Spotlight on Unique Coffee Traditions Around the World</h2>
+
+    <div class="pj-cc__tradition-item">
+      <span class="pj-cc__tradition-num">1. Italy</span>
+      <h3 class="pj-cc__tradition-title">The Home of Espresso</h3>
+      <p class="pj-cc__tradition-body">Italians take their coffee seriously, with espresso being the cornerstone of their culture. The concept of "la pausa caffè" (coffee break) is an integral part of Italian life, offering a moment to pause and connect with others. Italians often pair their coffee with a small pastry, such as a cornetto, during breakfast hours.</p>
+      <p class="pj-cc__recipe-label">Recipe:</p>
+      <ol class="pj-cc__recipe-steps">
+        <li>Brew a strong espresso using finely ground coffee beans.</li>
+        <li>Serve in a pre-warmed demitasse cup.</li>
+        <li>Enjoy without milk, savouring the rich, robust flavors.</li>
+      </ol>
+    </div>
+
+    <div class="pj-cc__tradition-item">
+      <span class="pj-cc__tradition-num">2. Turkey</span>
+      <h3 class="pj-cc__tradition-title">Steeped in Ceremony</h3>
+      <p class="pj-cc__tradition-body">Turkish coffee is a symbol of hospitality and heritage. Prepared in a cezve (a small pot), it's brewed with sugar and served until, often accompanied by a piece of Turkish delight. Fortune-telling using coffee grounds (tasseography) is a popular tradition in Turkey.</p>
+      <p class="pj-cc__recipe-label">Recipe:</p>
+      <ol class="pj-cc__recipe-steps">
+        <li>Combine water, finely ground coffee, and sugar in a cezve.</li>
+        <li>Heat gently, allowing foam to form, and pour into a cup without straining.</li>
+        <li>Let the grounds settle before drinking.</li>
+      </ol>
+    </div>
+
+    <div class="pj-cc__tradition-item">
+      <span class="pj-cc__tradition-num">3. Ethiopia</span>
+      <h3 class="pj-cc__tradition-title">Coffee's Spiritual Birthplace</h3>
+      <p class="pj-cc__tradition-body">As the birthplace of coffee, Ethiopia's coffee ceremony is a profound cultural ritual. The process involves roasting beans, grinding them by hand, and brewing in a jebena (clay pot). The ceremony is a communal experience, often accompanied by traditional snacks and incense.</p>
+      <p class="pj-cc__recipe-label">Recipe:</p>
+      <ol class="pj-cc__recipe-steps">
+        <li>Roast green coffee beans until fragrant.</li>
+        <li>Grind with a mortar and pestle.</li>
+        <li>Brew in a jebena and serve in small cups, often with popcorn or roasted barley.</li>
+      </ol>
+    </div>
+
+    <div class="pj-cc__tradition-item">
+      <span class="pj-cc__tradition-num">4. Japan</span>
+      <h3 class="pj-cc__tradition-title">Precision and Elegance</h3>
+      <p class="pj-cc__tradition-body">Japan's coffee culture is characterized by its meticulous attention to detail, with a focus on pour-over coffee. This method highlights the subtleties of flavor and aroma. In cities like Tokyo, themed coffee shops offer a unique twist, such as cat cafes or manga-inspired coffee houses.</p>
+      <p class="pj-cc__recipe-label">Recipe:</p>
+      <ol class="pj-cc__recipe-steps">
+        <li>Place a filter in a pour-over dripper and rinse with hot water.</li>
+        <li>Add medium-ground coffee and add hot water in a circular motion.</li>
+        <li>Allow it to drip into a carafe before serving.</li>
+      </ol>
+    </div>
+
+    <div class="pj-cc__tradition-item">
+      <span class="pj-cc__tradition-num">5. Cuba</span>
+      <h3 class="pj-cc__tradition-title">Cuban Coffee</h3>
+      <p class="pj-cc__tradition-body">Sweetened with Condensed Milk: Cuba, or Cuban coffee, is a staple. Made with a shot of espresso sweetened into a creamy foam (espumita), it's enjoyed throughout the day. Coffee in Cuba is often served with a small glass of water to cleanse the palate.</p>
+      <p class="pj-cc__recipe-label">Recipe:</p>
+      <ol class="pj-cc__recipe-steps">
+        <li>Brew espresso and mix a small portion with sugar.</li>
+        <li>Whip the mixture until frothy, then combine with the rest of the espresso.</li>
+        <li>Serve in small cups.</li>
+      </ol>
+    </div>
+
+    <div class="pj-cc__tradition-item">
+      <span class="pj-cc__tradition-num">6. Vietnam</span>
+      <h3 class="pj-cc__tradition-title">Sweetened with Condensed Milk</h3>
+      <p class="pj-cc__tradition-body">Vietnam is known for its robusta coffee beans and its unique brewing style using a phin filter. Vietnamese iced coffee (cà phê sữa đá) is a popular treat, made with sweetened condensed milk and served over ice.</p>
+      <p class="pj-cc__recipe-label">Recipe:</p>
+      <ol class="pj-cc__recipe-steps">
+        <li>Place ground coffee in a phin filter and pour hot water over it.</li>
+        <li>Let it drip slowly into a cup with sweetened condensed milk.</li>
+        <li>Stir and pour over ice.</li>
+      </ol>
+    </div>
+
+    <div class="pj-cc__tradition-item">
+      <span class="pj-cc__tradition-num">7. Sweden</span>
+      <h3 class="pj-cc__tradition-title">Fika — The Coffee Break Tradition</h3>
+      <p class="pj-cc__tradition-body">In Sweden, coffee culture revolves around "fika," a social coffee break that emphasizes relaxation and connection. Coffee is paired with pastries like cinnamon buns (kanelbullar), and the ritual is an essential part of Swedish daily life.</p>
+      <p class="pj-cc__recipe-label">Recipe:</p>
+      <ol class="pj-cc__recipe-steps">
+        <li>Brew drip coffee or French press coffee.</li>
+        <li>Serve with pastries or cookies, enjoying leisurely with friends or colleagues.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div>
+    {%- if section.settings.traditions_image != blank -%}
+      {{ section.settings.traditions_image | image_url: width: 720 | image_tag: loading: 'lazy', alt: 'Coffee traditions around the world' }}
+    {%- else -%}
+      <img src="https://images.unsplash.com/photo-1585494165607-a8c94af72e37?w=720&q=85&auto=format&fit=crop" alt="Global coffee traditions" loading="lazy" style="width:100%;border-radius:0.4rem;display:block;position:sticky;top:10rem;">
+    {%- endif -%}
+  </div>
+</div>
+
+<!-- Sustainable Practices -->
+<div class="pj-cc__dark">
+  <div class="pj-cc__dark-inner">
+    <h2>Sustainable Practices in Coffee Culture</h2>
+    <p>As coffee lovers, it's important to support sustainable practices to ensure the future of our favorite beverage. Choosing ethically sourced beans, supporting fair-trade practices, and minimizing waste are small steps that make a big impact. Look for certifications like Rainforest Alliance, Fair Trade, or Organic when buying coffee. Additionally, reusable coffee cups and composting coffee grounds can reduce environmental impact.</p>
+
+    <h3>Cultural Coffee Festivals</h3>
+    <p>Coffee Festivals Around The World Celebrate The Diverse Traditions, Flavors, And Brewing Methods That Define Coffee Cultures. These Events Bring Together Coffee Enthusiasts, Professionals, And Curious Newcomers To Explore Everything From Artisanal Blends To Innovative Brewing Techniques. Festivals Like The World Coffee Championships And The Ethiopian Coffee Ceremony Showcase The Artistry, History, And Community Spirit Behind The Beloved Beverage. Attendees Can Immerse Themselves In Tastings, Workshops, And Cultural Performances, Making These Festivals A Vibrant Tribute To Coffee's Global Significance. Whether In Bustling Cities Or Coffee's Origin Countries, These Festivals Unite People Through Their Shared Love For Coffee.</p>
+
+    <h3>The Specialty Coffee Movement</h3>
+    <p>The rise of the specialty coffee movement has revolutionized the industry, emphasizing high-quality blend and unique flavor profiles. This movement celebrates the artistry of coffee production — from farm to cup — and invites consumers to appreciate the nuances of single-origin beans, innovative brewing techniques, and expert craftsmanship. Specialty coffee shops also promote direct trade, ensuring farmers receive fair compensation.</p>
+
+    <h3>Why Coffee Cultures Matter</h3>
+    <p>Exploring coffee cultures through home brewing or global festivals fosters a deeper appreciation for this cherished beverage. It connects people across nations, inspiring you by portraying your brewing skills or participating in events, you become part of a global tradition. Coffee unites us through its versatility, rituals, and rich history.</p>
+
+    <h3>Conclusion</h3>
+    <p>Exploring coffee culture is a journey through tradition, and innovation. By embracing new recipes, understanding diverse traditions, and supporting sustainable practices, you enrich your coffee experience while making a positive impact. So why not try brewing a cup inspired by a different culture today? Let the taste of coffee inspire your next adventure, one sip at a time.</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Coffee Culture",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image",        "label": "Hero background image" },
+    { "type": "image_picker", "id": "traditions_image",  "label": "Traditions side image" }
+  ],
+  "presets": [{ "name": "Coffee Culture Page" }]
+}
+{% endschema %}

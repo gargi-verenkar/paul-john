@@ -1,0 +1,163 @@
+{%- style -%}
+  :root { --pj-cream:#FDF6EC; --pj-brown:#4A2C0A; --pj-orange:#C8651B; --pj-font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
+
+  /* ── Hero ── */
+  .pj-brew__hero { position:relative; height:44rem; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+  .pj-brew__hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .pj-brew__hero-overlay { position:absolute; inset:0; background:rgba(20,8,0,0.55); }
+  .pj-brew__hero-content { position:relative; z-index:2; text-align:center; }
+  .pj-brew__breadcrumb { font-size:1.2rem; letter-spacing:0.1em; text-transform:uppercase; color:#ffffff !important; opacity:0.8; margin-bottom:1rem; font-family:var(--pj-font); }
+  .pj-brew__hero-title { font-size:clamp(2.8rem,5vw,5rem); font-weight:700; letter-spacing:0.15em; text-transform:uppercase; margin:0; color:#ffffff !important; text-shadow:0 2px 12px rgba(0,0,0,0.4); font-family:var(--pj-font); }
+
+  /* ── Body layout ── */
+  .pj-brew__body { max-width:130rem; margin:0 auto; padding:6rem 2rem; display:grid; grid-template-columns:1fr 38rem; gap:6rem; align-items:start; }
+  @media(max-width:899px){ .pj-brew__body{ grid-template-columns:1fr; gap:3rem; } }
+
+  .pj-brew__content h2 { font-size:1.8rem; font-weight:800; text-transform:uppercase; color:var(--pj-brown); margin:0 0 1.6rem; letter-spacing:0.06em; font-family:var(--pj-font); }
+  .pj-brew__content h3 { font-size:1.5rem; font-weight:700; color:var(--pj-brown); margin:2.4rem 0 0.8rem; font-family:var(--pj-font); }
+  .pj-brew__content p { font-size:1.45rem; line-height:1.75; color:rgba(74,44,10,0.8); margin:0 0 1.2rem; font-family:var(--pj-font); }
+  .pj-brew__content ul { padding-left:2rem; margin:0 0 1.2rem; }
+  .pj-brew__content ul li { font-size:1.4rem; line-height:1.7; color:rgba(74,44,10,0.8); margin-bottom:0.5rem; font-family:var(--pj-font); }
+  .pj-brew__content ol { padding-left:2rem; margin:0 0 1.2rem; }
+  .pj-brew__content ol li { font-size:1.4rem; line-height:1.7; color:rgba(74,44,10,0.8); margin-bottom:0.6rem; font-family:var(--pj-font); }
+  .pj-brew__content strong { color:var(--pj-brown); }
+
+  /* ── Sticky side image ── */
+  .pj-brew__side { position:sticky; top:10rem; }
+  .pj-brew__side img { width:100%; border-radius:0.4rem; display:block; }
+
+  /* ── Dark section ── */
+  .pj-brew__dark { background:var(--pj-brown); padding:6rem 2rem; }
+  .pj-brew__dark-inner { max-width:130rem; margin:0 auto; display:grid; grid-template-columns:38rem 1fr; gap:6rem; align-items:start; }
+  @media(max-width:899px){ .pj-brew__dark-inner{ grid-template-columns:1fr; } }
+  .pj-brew__dark img { width:100%; border-radius:0.4rem; display:block; }
+  .pj-brew__dark h2 { font-size:1.8rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#ffffff; margin:0 0 1.6rem; font-family:var(--pj-font); }
+  .pj-brew__dark p { font-size:1.4rem; line-height:1.75; color:rgba(253,246,236,0.82); margin:0 0 1.2rem; font-family:var(--pj-font); }
+  .pj-brew__dark ul { padding-left:2rem; margin:0 0 1.2rem; }
+  .pj-brew__dark ul li { font-size:1.4rem; line-height:1.7; color:rgba(253,246,236,0.82); margin-bottom:0.5rem; font-family:var(--pj-font); }
+
+  /* ── Tips section ── */
+  .pj-brew__tips { max-width:130rem; margin:0 auto; padding:6rem 2rem; }
+  .pj-brew__tips h2 { font-size:1.8rem; font-weight:800; text-transform:uppercase; color:var(--pj-brown); margin:0 0 1.6rem; letter-spacing:0.06em; font-family:var(--pj-font); }
+  .pj-brew__tips ol { padding-left:2rem; }
+  .pj-brew__tips ol li { font-size:1.45rem; line-height:1.75; color:rgba(74,44,10,0.8); margin-bottom:0.8rem; font-family:var(--pj-font); }
+  .pj-brew__tips p { font-size:1.45rem; line-height:1.75; color:rgba(74,44,10,0.8); margin:0 0 1.6rem; font-family:var(--pj-font); }
+{%- endstyle -%}
+
+<!-- Hero -->
+<div class="pj-brew__hero">
+  {%- if section.settings.hero_image != blank -%}
+    {{ section.settings.hero_image | image_url: width: 1600 | image_tag: loading: 'eager', alt: 'Brewing Guides' }}
+  {%- else -%}
+    <img src="https://www.yummytummyaarthi.com/wp-content/uploads/2012/03/1-9.jpeg" alt="Coffee plantation hero" loading="eager">
+  {%- endif -%}
+  <div class="pj-brew__hero-overlay"></div>
+  <div class="pj-brew__hero-content">
+    <p class="pj-brew__breadcrumb">Home / Brewing Guides</p>
+    <h1 class="pj-brew__hero-title">Brewing Guides</h1>
+  </div>
+</div>
+
+<!-- Section 1 — Intro + side image -->
+<div class="pj-brew__body">
+  <div class="pj-brew__content">
+    <h2>Brewing Guides: A Comprehensive Guide to Making the Ideal Cup of Coffee at Home</h2>
+    <p>Welcome to our Brewing Guides, where we will show you everything you need to brew the ideal cup of coffee at home. Whether you are just getting started with coffee brewing or want to improve your technique, this guide will help you get the most out of your beans and brewing equipment. From home espresso shots to the best coffee brewing methods, we have you covered with expert advice and step-by-step instructions. Let us dig in and learn how to make the ideal cup of coffee!</p>
+
+    <h3>Coffee Brewing</h3>
+    <p>Brewing coffee at home is an art form that, like any other, demands the proper gear and skills. Whether you're a beginner or a seasoned coffee enthusiast, understanding the essential coffee brewing equipment and the best coffee brewing methods will help you unlock the full potential of your coffee beans. In this guide, we'll cover everything you need to know about brewing coffee at home, from the coffee brewing guide to helpful coffee brewing tips that ensure your cup of coffee is always perfect.</p>
+
+    <h3>Coffee Machines for Brewing</h3>
+    <p>Get a good grasp on the fundamentals of coffee brewing before you get going. If you want your coffee to taste great, invest in high-quality equipment. The following materials are required for each method:</p>
+    <ul>
+      <li><strong>Grinder for Coffee</strong> — The secret to a fragrant cup of coffee is using freshly ground beans. If you want consistent results, choose a high-quality burr grinder.</li>
+      <li><strong>Espresso machine, pour-over set, French press, or drip coffee maker</strong> — the type of coffee maker you will require depends on your preferred brewing method.</li>
+      <li><strong>Kettle</strong> — Pour-over brewing requires a gooseneck kettle with adjustable water flow.</li>
+      <li><strong>Scale</strong> — Use a scale to consistently and properly measure the quantities of coffee and water.</li>
+      <li><strong>Filter Papers</strong> — Using filter paper with your pour-over or drip coffee machine will ensure that your cup is smooth and free of grounds.</li>
+    </ul>
+  </div>
+  <div class="pj-brew__side">
+    {%- if section.settings.side_image != blank -%}
+      {{ section.settings.side_image | image_url: width: 760 | image_tag: loading: 'lazy', alt: 'Coffee brewing' }}
+    {%- else -%}
+      <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=760&q=85&auto=format&fit=crop" alt="Coffee being brewed" loading="lazy">
+    {%- endif -%}
+  </div>
+</div>
+
+<!-- Section 2 — Dark background, pour-over -->
+<div class="pj-brew__dark">
+  <div class="pj-brew__dark-inner">
+    <div>
+      {%- if section.settings.pour_image != blank -%}
+        {{ section.settings.pour_image | image_url: width: 760 | image_tag: loading: 'lazy', alt: 'Pour over coffee' }}
+      {%- else -%}
+        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=760&q=85&auto=format&fit=crop" alt="Pour over coffee brewing" loading="lazy">
+      {%- endif -%}
+    </div>
+    <div>
+      <h2>Mastering the Art of Brewing Coffee at Home</h2>
+      <p>Brewing coffee at home is an enjoyable and fulfilling experience. Adhere to these straightforward steps to craft an exceptional cup of coffee consistently:</p>
+      <ul>
+        <li><strong>Select Your Coffee Beans</strong> — Choose premium coffee beans, ideally sourced from recent roasts. Each variety of beans offers a unique flavour profile, so take the time to explore and discover your preferred taste.</li>
+        <li><strong>Prepare Your Coffee Beans</strong> — Ensure your beans are ground to the perfect texture tailored to your chosen coffee brewing technique. For optimal extraction, employ a fine grind for espresso, a medium grind for drip coffee, and a coarse grind for French press brewing.</li>
+        <li><strong>Precision in Your Brew</strong> — For optimal brewing, it is recommended to use approximately 1 to 2 tablespoons of ground coffee for every 6 ounces of water, though you can certainly tweak this ratio to suit your personal preference.</li>
+        <li><strong>Brew Your Coffee</strong> — Adhere to the precise guidelines for your selected brewing technique.</li>
+      </ul>
+
+      <h2 style="margin-top:2.4rem;">A Guide To Mastering Pour-Over Brewing</h2>
+      <p>The pour-over method stands out as one of the most favoured and gratifying techniques for brewing coffee at home. This technique offers meticulous oversight of the brewing process, resulting in a clean and flavourful cup of coffee.</p>
+      <p><strong>Mastering the Art of Pour-Over Coffee Brewing:</strong></p>
+      <ol style="padding-left:2rem;">
+        <li style="font-size:1.4rem;line-height:1.7;color:rgba(253,246,236,0.82);margin-bottom:0.6rem;font-family:var(--pj-font);">Setup: To eliminate any papery aftertaste, rinse the coffee filter in hot water and use it in your pour-over brewer (such as a Chemex or V60).</li>
+        <li style="font-size:1.4rem;line-height:1.7;color:rgba(253,246,236,0.82);margin-bottom:0.6rem;font-family:var(--pj-font);">Add Ground Coffee: Use a medium grind and add it to the filter. Typically, 1 to 2 tablespoons of coffee per 6 ounces of water works well.</li>
+        <li style="font-size:1.4rem;line-height:1.7;color:rgba(253,246,236,0.82);margin-bottom:0.6rem;font-family:var(--pj-font);">Pour Water: Slowly pour hot water (about 200°F) over the coffee grounds, starting from the center and working your way outward in circular motions. Pause for about 30 seconds to let the coffee "bloom," then continue pouring in stages.</li>
+        <li style="font-size:1.4rem;line-height:1.7;color:rgba(253,246,236,0.82);margin-bottom:0.6rem;font-family:var(--pj-font);">Enjoy: Let the water drain completely, then serve your coffee. Experiment with your pour speed and technique to fine-tune the flavor.</li>
+      </ol>
+      <p><em style="color:rgba(253,246,236,0.7);">Best Coffee for Pour-Over Brewing: Light to medium roasts work best for pour-over brewing, as this method highlights their complex flavors and aromas.</em></p>
+    </div>
+  </div>
+</div>
+
+<!-- Section 3 — Espresso + Tips -->
+<div class="pj-brew__tips">
+  <h2>Perfect Espresso at Home</h2>
+  <p>With the correct method and tools, anyone can make delicious espresso at home. For those who like to make their own espresso at home, here is a brief tutorial:</p>
+  <p><strong>How to Make Espresso Shots:</strong></p>
+  <ol>
+    <li>Grind Your Coffee: Use a fine grind for espresso. The grind should resemble powdered sugar.</li>
+    <li>Tamp the Coffee: After placing the grounds in your portafilter, use a tamper to press the coffee down firmly and evenly.</li>
+    <li>Brew Your Espresso: Lock the portafilter into your espresso machine and start brewing. A good shot should take 25–30 seconds to brew.</li>
+    <li>Enjoy: A good espresso shot should have a rich crema (foam) on top, which signifies a well-brewed shot.</li>
+  </ol>
+  <p>Guide to Making Espresso Drinks: Once you've mastered espresso shots, you can experiment with various espresso-based drinks like lattes, cappuccinos, and Americanos.</p>
+
+  <h2 style="margin-top:3.2rem;">Coffee Brewing Tips</h2>
+  <p>To help you brew the perfect cup every time, here are some helpful coffee brewing tips:</p>
+  <ol>
+    <li><strong>Use Fresh, Quality Beans</strong> — The fresher your beans, the better your coffee will taste.</li>
+    <li><strong>Invest in Good Equipment</strong> — High-quality coffee brewing equipment is worth the investment.</li>
+    <li><strong>Measure Your Coffee and Water</strong> — To ensure consistency, use a scale to measure both coffee and water.</li>
+    <li><strong>Clean Your Equipment Regularly</strong> — Regular cleaning of your coffee maker, grinder, and other tools will keep your coffee tasting fresh.</li>
+    <li><strong>Experiment</strong> — Don't be afraid to experiment with different beans, grind sizes, and brewing methods to discover what works best for you.</li>
+  </ol>
+
+  <h2 style="margin-top:3.2rem;">Coffee Brewing for Beginners</h2>
+  <p>If you're new to the world of coffee, don't worry! Coffee brewing for beginners is all about finding the right method and equipment that suits your taste. Begin with a drip coffee machine or French press, and as you gain experience, progress to more complex methods such as pour-over or espresso brewing.</p>
+  <p><strong>Brew the Perfect Cup Every Time!</strong></p>
+  <p>Now that you have a comprehensive coffee making guide, put your knowledge to the test! Whether you are preparing espresso shots at home, experimenting with pour-over brewing, or trying out alternative home coffee brewing methods, consistency and quality are essential. We offer excellent coffee beans and cutting-edge brewing equipment to improve your at-home brewing experience.</p>
+  <p>Begin brewing like a master today and have the perfect cup of coffee every time!</p>
+</div>
+
+{% schema %}
+{
+  "name": "Brewing Guides",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image", "label": "Hero background image" },
+    { "type": "image_picker", "id": "side_image", "label": "Section 1 side image" },
+    { "type": "image_picker", "id": "pour_image", "label": "Pour-over section image" }
+  ],
+  "presets": [{ "name": "Brewing Guides Page" }]
+}
+{% endschema %}

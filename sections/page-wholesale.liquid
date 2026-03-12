@@ -1,0 +1,345 @@
+{%- style -%}
+  .pj-ws__hero {
+    position: relative; height: 42rem; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pj-ws__hero img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .pj-ws__hero-overlay { position: absolute; inset: 0; background: rgba(30,12,2,0.55); }
+  .pj-ws__hero-content { position: relative; z-index: 2; text-align: center; color: #ffffff; }
+  .pj-ws__breadcrumb {
+    font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.8; margin-bottom: 1rem; font-family: var(--pj-font);
+    color: #ffffff !important;
+  }
+  .pj-ws__hero-title {
+    font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; margin: 0; font-family: var(--pj-font);
+    color: #ffffff !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  }
+
+  /* Why Partner + Inquiry */
+  .pj-ws__intro {
+    max-width: 130rem; margin: 0 auto; padding: 7rem 2rem;
+    display: grid; grid-template-columns: 1fr 46rem; gap: 6rem; align-items: start;
+  }
+  @media (max-width: 959px) { .pj-ws__intro { grid-template-columns: 1fr; gap: 4rem; } }
+
+  .pj-ws__why h2 {
+    font-size: 2rem; font-weight: 700; color: var(--pj-brown);
+    margin: 0 0 1.6rem; font-family: var(--pj-font);
+  }
+  .pj-ws__why p {
+    font-size: 1.5rem; line-height: 1.75; color: rgba(74,44,10,0.8);
+    margin: 0 0 1.2rem; font-family: var(--pj-font);
+  }
+
+  /* Inquiry form */
+  .pj-ws__form-card {
+    background: var(--pj-cream); border: 1px solid rgba(74,44,10,0.12);
+    border-radius: 0.4rem; padding: 3.2rem;
+    box-shadow: 0 4px 20px rgba(74,44,10,0.06);
+  }
+  .pj-ws__form-card h3 {
+    font-size: 1.7rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--pj-brown);
+    text-align: center; margin: 0 0 0.6rem; font-family: var(--pj-font);
+  }
+  .pj-ws__form-card p {
+    font-size: 1.3rem; text-align: center; color: rgba(74,44,10,0.6);
+    margin: 0 0 2.4rem; font-family: var(--pj-font);
+  }
+  .pj-ws__row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem;
+  }
+  @media (max-width: 500px) { .pj-ws__row { grid-template-columns: 1fr; } }
+  .pj-ws__field {
+    width: 100%; padding: 1.1rem 1.4rem;
+    border: 1px solid rgba(74,44,10,0.2); border-radius: 0.3rem;
+    background: var(--pj-cream); font-size: 1.35rem;
+    color: var(--pj-brown); font-family: var(--pj-font); box-sizing: border-box;
+    outline: none; transition: border-color 0.2s;
+  }
+  .pj-ws__field:focus { border-color: var(--pj-orange); }
+  textarea.pj-ws__field { min-height: 10rem; resize: vertical; }
+  .pj-ws__submit {
+    width: 100%; padding: 1.3rem; margin-top: 1.6rem;
+    background: var(--pj-brown); color: var(--pj-cream);
+    font-size: 1.35rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; border: none; border-radius: 0.3rem;
+    cursor: pointer; font-family: var(--pj-font); transition: background 0.2s;
+  }
+  .pj-ws__submit:hover { background: var(--pj-orange); }
+
+  /* Coffee banners */
+  .pj-ws__banner {
+    position: relative; min-height: 50rem; overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .pj-ws__banner img.pj-ws__banner-bg {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .pj-ws__banner-overlay { position: absolute; inset: 0; background: rgba(20,8,0,0.55); }
+  .pj-ws__banner-content {
+    position: relative; z-index: 2;
+    max-width: 55rem; padding: 5rem 4rem 5rem 7%;
+  }
+  .pj-ws__banner--right .pj-ws__banner-content { margin-left: auto; padding: 5rem 7% 5rem 4rem; }
+  .pj-ws__banner-tag {
+    font-size: 1.1rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--pj-orange);
+    margin-bottom: 1rem; font-family: var(--pj-font);
+  }
+  .pj-ws__banner-title {
+    font-size: clamp(2.4rem, 3.5vw, 3.6rem); font-weight: 700;
+    color: var(--pj-cream); line-height: 1.15;
+    margin: 0 0 1.6rem; font-family: var(--pj-font);
+  }
+  .pj-ws__banner-body {
+    font-size: 1.4rem; color: rgba(253,246,236,0.8);
+    line-height: 1.7; margin: 0 0 1.6rem; font-family: var(--pj-font);
+  }
+  .pj-ws__banner-list {
+    list-style: none; padding: 0; margin: 0 0 2.4rem;
+  }
+  .pj-ws__banner-list li {
+    font-size: 1.35rem; color: rgba(253,246,236,0.85);
+    padding: 0.3rem 0; font-family: var(--pj-font);
+  }
+  .pj-ws__banner-list li::before { content: "• "; color: var(--pj-orange); }
+  .pj-ws__banner-btn {
+    display: inline-block; padding: 1.1rem 2.4rem;
+    background: var(--pj-orange); color: var(--pj-cream);
+    font-size: 1.2rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    border-radius: 0.3rem; font-family: var(--pj-font); transition: background 0.2s;
+  }
+  .pj-ws__banner-btn:hover { background: #a8501a; }
+
+  /* FAQ */
+  .pj-ws__faq { max-width: 104rem; margin: 0 auto; padding: 6rem 2rem; }
+  .pj-ws__faq h2 {
+    font-size: 2rem; font-weight: 700; color: var(--pj-brown);
+    margin: 0 0 2rem; font-family: var(--pj-font);
+  }
+  .pj-wsfaq-item { border-top: 1px solid rgba(74,44,10,0.15); }
+  .pj-wsfaq-item:last-child { border-bottom: 1px solid rgba(74,44,10,0.15); }
+  .pj-wsfaq-trigger {
+    width: 100%; background: none; border: none;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.6rem 0; cursor: pointer;
+    font-size: 1.45rem; font-weight: 600; color: var(--pj-brown);
+    text-align: left; font-family: var(--pj-font); gap: 1.6rem;
+  }
+  .pj-wsfaq-trigger svg {
+    width: 1.6rem; height: 1.6rem; flex-shrink: 0;
+    fill: none; stroke: var(--pj-orange); stroke-width: 2.5;
+    stroke-linecap: round; stroke-linejoin: round; transition: transform 0.3s;
+  }
+  .pj-wsfaq-item.is-open .pj-wsfaq-trigger svg { transform: rotate(45deg); }
+  .pj-wsfaq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .pj-wsfaq-item.is-open .pj-wsfaq-answer { max-height: 30rem; }
+  .pj-wsfaq-answer p {
+    font-size: 1.4rem; color: rgba(74,44,10,0.75);
+    line-height: 1.7; padding: 0 0 1.6rem; margin: 0; font-family: var(--pj-font);
+  }
+{%- endstyle -%}
+
+<!-- Hero -->
+<div class="pj-ws__hero">
+  {%- if section.settings.hero_image != blank -%}
+    {{ section.settings.hero_image | image_url: width: 1600 | image_tag: loading: 'eager', alt: 'Wholesale' }}
+  {%- else -%}
+    <!-- PLACEHOLDER: Replace with wholesale hero image in Theme Customizer -->
+    <img
+      src="https://oldmadrasmarket.com/cdn/shop/files/AdobeStock_482039247.jpg?v=1749288088&width=1946"
+      alt="Coffee beans — Wholesale"
+      loading="eager"
+    >
+  {%- endif -%}
+  <div class="pj-ws__hero-overlay"></div>
+  <div class="pj-ws__hero-content">
+    <p class="pj-ws__breadcrumb">Home / Wholesale</p>
+    <h1 class="pj-ws__hero-title">Wholesale</h1>
+  </div>
+</div>
+
+<!-- Why Partner + Inquiry Form -->
+<div class="pj-ws__intro">
+  <div class="pj-ws__why">
+    <h2>Why Partner with Paul John Caffeine?</h2>
+    <p>{{ section.settings.why_text | default: "From the mist-covered estates of Coorg and Chikmagalur, we bring the soul of South Indian coffee straight to your business. Our single-origin Arabica needs no introduction: whether you are looking for signature roasted blends or premium-grade green coffee, we offer flexible weekly and monthly wholesale supply to suit businesses of every size. With nationwide shipping across the USA and a dedicated support team by your side, partnering with Paul John Caffeine means offering your customers something truly rare — coffee that carries the spirit of India in every sip." }}</p>
+  </div>
+
+  <div class="pj-ws__form-card">
+    <h3>Inquiry Form</h3>
+    <p>Please fill the form below so we can reach you</p>
+    {%- form 'contact', id: 'pjWholesaleForm' -%}
+      {%- if form.posted_successfully? -%}
+        <p style="color:#1A7A4A;font-weight:600;font-family:var(--pj-font);text-align:center;">✓ Thank you! We'll be in touch shortly.</p>
+      {%- else -%}
+        <div class="pj-ws__row">
+          <input class="pj-ws__field" type="text"  name="contact[first_name]" placeholder="Name *" required>
+          <input class="pj-ws__field" type="text"  name="contact[last_name]"  placeholder="Surname *" required>
+        </div>
+        <div class="pj-ws__row">
+          <input class="pj-ws__field" type="email" name="contact[email]"      placeholder="Email *" required>
+          <input class="pj-ws__field" type="tel"   name="contact[phone]"      placeholder="Phone *" required>
+        </div>
+        <div class="pj-ws__row">
+          <input class="pj-ws__field" type="number" name="contact[quantity]" placeholder="Quantity" min="1">
+          <select class="pj-ws__field" name="contact[product]">
+            <option value="">Product</option>
+            <option>Signature Roasted Coffee Blend</option>
+            <option>Single-Origin Arabica</option>
+            <option>Chicory Coffee</option>
+            <option>Robusta Coffee</option>
+            <option>Raw Green Coffee</option>
+            <option>Drinkware</option>
+            <option>Brewers</option>
+            <option>Gift Sets</option>
+          </select>
+        </div>
+        <textarea class="pj-ws__field" name="contact[body]" placeholder="Message"></textarea>
+        <button class="pj-ws__submit" type="submit">Send</button>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</div>
+
+<!-- Roasted Coffee Banner -->
+<div class="pj-ws__banner">
+  {%- if section.settings.roasted_image != blank -%}
+    {{ section.settings.roasted_image | image_url: width: 1600 | image_tag: loading: 'lazy', alt: 'Wholesale Roasted Coffee', class: 'pj-ws__banner-bg' }}
+  {%- else -%}
+    <!-- PLACEHOLDER: Replace with roasted coffee banner image in Theme Customizer -->
+    <img
+      class="pj-ws__banner-bg"
+      src="https://images.unsplash.com/photo-1585494165607-a8c94af72e37?w=1600&q=80&auto=format&fit=crop"
+      alt="Roasted coffee — wholesale"
+      loading="lazy"
+    >
+  {%- endif -%}
+  <div class="pj-ws__banner-overlay"></div>
+  <div class="pj-ws__banner-content">
+    <p class="pj-ws__banner-tag">Wholesale Roasted Coffee</p>
+    <h2 class="pj-ws__banner-title">{{ section.settings.roasted_title | default: "Signature Roasted Coffee" }}</h2>
+    <p class="pj-ws__banner-body">{{ section.settings.roasted_body | default: "Bring the boutique flavor of South India to your menu. Partner with Paul John Caffeine, one of the leading wholesale Indian coffee suppliers in the US, and offer your customers something truly different. Enrich your daily routine with a fresh cuppa with our weekly or monthly shipments of Paul John Roasted Coffee." }}</p>
+    <a href="mailto:info@pauljohncaffeine.com?subject=Roasted Coffee Wholesale Inquiry" class="pj-ws__banner-btn">Inquiry for Supply</a>
+  </div>
+</div>
+
+<!-- Green Coffee Banner -->
+<div class="pj-ws__banner pj-ws__banner--right">
+  {%- if section.settings.green_image != blank -%}
+    {{ section.settings.green_image | image_url: width: 1600 | image_tag: loading: 'lazy', alt: 'Wholesale Green Coffee', class: 'pj-ws__banner-bg' }}
+  {%- else -%}
+    <!-- PLACEHOLDER: Replace with green coffee banner image in Theme Customizer -->
+    <img
+      class="pj-ws__banner-bg"
+      src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=1600&q=80&auto=format&fit=crop"
+      alt="Green coffee beans — wholesale"
+      loading="lazy"
+    >
+  {%- endif -%}
+  <div class="pj-ws__banner-overlay"></div>
+  <div class="pj-ws__banner-content">
+    <p class="pj-ws__banner-tag">Wholesale Green Coffee</p>
+    <h2 class="pj-ws__banner-title">{{ section.settings.green_title | default: "Single-Origin Raw Green Coffee" }}</h2>
+    <p class="pj-ws__banner-body">{{ section.settings.green_body | default: "Paul John Caffeine offers the distinct character of its growing region — from the dainty dryness of Monsoon Malabar to the clean brightness of Arabica Peppery. Whether you need roasted or roast-to-your-own spec, our raw green coffee gives you the freedom to offer the cup your customers love." }}</p>
+    <p style="font-size:1.3rem;color:rgba(253,246,236,0.85);font-family:var(--pj-font);font-weight:600;margin-bottom:0.8rem;">Current Samples Available:</p>
+    <ul class="pj-ws__banner-list">
+      <li>Wild Mysore Nuggets</li>
+      <li>Plantation AA</li>
+      <li>Arabica AA Cherry</li>
+      <li>Monsoon Malabar</li>
+      <li>Robusta Cherry AA</li>
+    </ul>
+    <a href="mailto:info@pauljohncaffeine.com?subject=Green Coffee Wholesale Inquiry" class="pj-ws__banner-btn">Inquiry for Supply</a>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="pj-ws__faq">
+  <h2>F.A.Q.</h2>
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'faq' -%}
+      <div class="pj-wsfaq-item" {{ block.shopify_attributes }}>
+        <button class="pj-wsfaq-trigger" type="button">
+          {{ block.settings.question | escape }}
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="pj-wsfaq-answer"><p>{{ block.settings.answer }}</p></div>
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    <div class="pj-wsfaq-item">
+      <button class="pj-wsfaq-trigger" type="button">
+        What types of Indian coffee do you offer for wholesale?
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+      <div class="pj-wsfaq-answer"><p>We offer a premium South Indian coffees for wholesale, including single-origin Arabica, Plantation Parchment, Monsoon Malabar, Robusta Cherry AA, and our signature roasted blends of all of these sourced from select internationally renowned farms.</p></div>
+    </div>
+    <div class="pj-wsfaq-item">
+      <button class="pj-wsfaq-trigger" type="button">
+        What is the minimum order quantity for wholesale coffee?
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+      <div class="pj-wsfaq-answer"><p>Minimum order quantities vary by product. Please fill out our inquiry form and we will send you our current wholesale pricing sheet with MOQs for each coffee variety.</p></div>
+    </div>
+    <div class="pj-wsfaq-item">
+      <button class="pj-wsfaq-trigger" type="button">
+        Do you ship wholesale orders across the USA?
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+      <div class="pj-wsfaq-answer"><p>Yes! We ship wholesale orders to all 50 states. Our roastery is based in Tampa, Florida and we work with trusted freight carriers to ensure timely nationwide delivery.</p></div>
+    </div>
+    <div class="pj-wsfaq-item">
+      <button class="pj-wsfaq-trigger" type="button">
+        What makes Paul John Caffeine different from other coffee wholesalers?
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+      <div class="pj-wsfaq-answer"><p>We're one of the only wholesale suppliers of authentic single-origin South Indian coffee in the USA. Our beans come exclusively from the lush estates of Coorg, Karnataka — giving your customers a truly unique, specialty-grade experience that can't be found from generic commodity suppliers.</p></div>
+    </div>
+  {%- endfor -%}
+</div>
+
+<script>
+document.querySelectorAll('.pj-wsfaq-trigger').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var item = btn.closest('.pj-wsfaq-item');
+    var open = item.classList.contains('is-open');
+    document.querySelectorAll('.pj-wsfaq-item').forEach(function(i){ i.classList.remove('is-open'); });
+    if(!open) item.classList.add('is-open');
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Wholesale Page",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image",    "label": "Hero background image" },
+    { "type": "textarea",     "id": "why_text",      "label": "Why Partner text" },
+    { "type": "image_picker", "id": "roasted_image", "label": "Roasted Coffee banner image" },
+    { "type": "text",         "id": "roasted_title", "label": "Roasted Coffee title", "default": "Signature Roasted Coffee" },
+    { "type": "textarea",     "id": "roasted_body",  "label": "Roasted Coffee description" },
+    { "type": "image_picker", "id": "green_image",   "label": "Green Coffee banner image" },
+    { "type": "text",         "id": "green_title",   "label": "Green Coffee title", "default": "Single-Origin Raw Green Coffee" },
+    { "type": "textarea",     "id": "green_body",    "label": "Green Coffee description" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        { "type": "text",     "id": "question", "label": "Question" },
+        { "type": "textarea", "id": "answer",   "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Wholesale Page" }]
+}
+{% endschema %}

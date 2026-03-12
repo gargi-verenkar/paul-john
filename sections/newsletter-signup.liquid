@@ -1,0 +1,153 @@
+{%- style -%}
+  .pj-newsletter {
+    background: var(--pj-brown);
+    padding: var(--pj-section-padding-desktop) 2rem;
+    text-align: center;
+  }
+  @media (max-width: 749px) {
+    .pj-newsletter { padding: var(--pj-section-padding-mobile) 2rem; }
+  }
+  .pj-newsletter__inner {
+    max-width: 68rem;
+    margin: 0 auto;
+  }
+  .pj-newsletter__heading {
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pj-cream);
+    margin: 0 0 1.4rem;
+    line-height: 1.1;
+  }
+  .pj-newsletter__subtext {
+    font-size: 1.6rem;
+    color: rgba(253,246,236,0.72);
+    margin: 0 0 3.6rem;
+    line-height: 1.6;
+  }
+  .pj-newsletter__form {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .pj-newsletter__input {
+    flex: 1 1 28rem;
+    max-width: 44rem;
+    padding: 1.4rem 2rem;
+    background: rgba(253,246,236,0.1);
+    border: 2px solid rgba(253,246,236,0.35);
+    border-radius: var(--pj-btn-radius);
+    color: var(--pj-cream);
+    font-size: 1.5rem;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: var(--pj-font);
+  }
+  .pj-newsletter__input::placeholder { color: rgba(253,246,236,0.45); }
+  .pj-newsletter__input:focus { border-color: var(--pj-orange); }
+  .pj-newsletter__submit {
+    flex: 0 0 auto;
+    padding: 1.4rem 3rem;
+    background: var(--pj-orange);
+    color: var(--pj-cream);
+    border: 2px solid var(--pj-orange);
+    border-radius: var(--pj-btn-radius);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.22s, color 0.22s;
+    font-family: var(--pj-font);
+  }
+  .pj-newsletter__submit:hover {
+    background: transparent;
+    color: var(--pj-orange);
+  }
+  .pj-newsletter__success {
+    color: #a8e6a3;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.6rem;
+  }
+  .pj-newsletter__error {
+    color: #f9a8a8;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+  }
+{%- endstyle -%}
+
+<div class="pj-newsletter">
+  <div class="pj-newsletter__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="pj-newsletter__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subtext != blank -%}
+      <p class="pj-newsletter__subtext">{{ section.settings.subtext | escape }}</p>
+    {%- endif -%}
+
+    {%- form 'customer', id: 'NLForm-{{ section.id }}' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="pj-newsletter__form">
+        <input
+          type="email"
+          name="contact[email]"
+          class="pj-newsletter__input"
+          value="{{ form.email }}"
+          placeholder="Enter your email address"
+          aria-label="Email address"
+          autocomplete="email"
+          required
+          {%- if form.errors %}aria-invalid="true"{%- endif -%}
+        >
+        <button type="submit" name="commit" class="pj-newsletter__submit">
+          {{ section.settings.btn_label | default: 'SUBMIT' | escape }}
+        </button>
+      </div>
+      {%- if form.posted_successfully? -%}
+        <p class="pj-newsletter__success">Thanks for subscribing! We&rsquo;ll be in touch soon.</p>
+      {%- endif -%}
+      {%- if form.errors -%}
+        <p class="pj-newsletter__error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Newsletter Signup",
+  "tag": "section",
+  "class": "section-newsletter-signup",
+  "disabled_on": { "groups": ["header","footer"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "NEVER MISS OUT!"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Stay up to date with our latest products!"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button label",
+      "default": "SUBMIT"
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_form_id",
+      "label": "Klaviyo Form ID",
+      "info": "Optional. If provided, embed Klaviyo form instead of native form."
+    }
+  ],
+  "presets": [{ "name": "Newsletter Signup" }]
+}
+{% endschema %}

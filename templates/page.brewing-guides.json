@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-brewing-guides",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

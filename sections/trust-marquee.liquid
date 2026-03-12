@@ -1,0 +1,104 @@
+{%- style -%}
+  .pj-marquee {
+    background: var(--pj-brown);
+    overflow: hidden;
+    padding: 1.4rem 0;
+  }
+  .pj-marquee__track {
+    display: flex;
+    width: max-content;
+    animation: pjMarquee {{ section.settings.speed }}s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pj-marquee__track { animation: none; flex-wrap: wrap; justify-content: center; }
+  }
+  .pj-marquee__track:hover { animation-play-state: paused; }
+  @keyframes pjMarquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .pj-marquee__set {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .pj-marquee__item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 2.8rem;
+    white-space: nowrap;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pj-cream);
+  }
+  .pj-marquee__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--pj-orange);
+    flex-shrink: 0;
+  }
+{%- endstyle -%}
+
+<div class="pj-marquee" aria-hidden="true">
+  <div class="pj-marquee__track">
+    {%- for _i in (1..2) -%}
+      <div class="pj-marquee__set">
+        {%- for block in section.blocks -%}
+          <span class="pj-marquee__item" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</span>
+          <span class="pj-marquee__dot"></span>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust Marquee",
+  "tag": "section",
+  "class": "section-trust-marquee",
+  "disabled_on": { "groups": ["header","footer"] },
+  "settings": [
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll speed (seconds)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "100% Indian Coffee"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Marquee",
+      "blocks": [
+        { "type": "item", "settings": { "text": "100% Indian Coffee" } },
+        { "type": "item", "settings": { "text": "Free Shipping On Orders Above $50" } },
+        { "type": "item", "settings": { "text": "Subscribe & Save" } },
+        { "type": "item", "settings": { "text": "Freshly Roasted In The USA" } },
+        { "type": "item", "settings": { "text": "Kosher Certified" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

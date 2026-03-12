@@ -1,0 +1,220 @@
+{%- style -%}
+  :root { --pj-cream:#FDF6EC; --pj-brown:#4A2C0A; --pj-orange:#C8651B; --pj-font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
+
+  /* Hero */
+  .pj-cb__hero { position:relative; height:44rem; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+  .pj-cb__hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .pj-cb__hero-overlay { position:absolute; inset:0; background:rgba(20,8,0,0.55); }
+  .pj-cb__hero-content { position:relative; z-index:2; text-align:center; }
+  .pj-cb__breadcrumb { font-size:1.2rem; letter-spacing:0.1em; text-transform:uppercase; color:#ffffff !important; opacity:0.8; margin-bottom:1rem; font-family:var(--pj-font); }
+  .pj-cb__hero-title { font-size:clamp(2.8rem,5vw,5rem); font-weight:700; letter-spacing:0.15em; text-transform:uppercase; margin:0; color:#ffffff !important; text-shadow:0 2px 12px rgba(0,0,0,0.4); font-family:var(--pj-font); }
+
+  /* Body */
+  .pj-cb__section { max-width:130rem; margin:0 auto; padding:5rem 2rem; }
+  .pj-cb__section h2 { font-size:1.9rem; font-weight:800; text-transform:uppercase; letter-spacing:0.07em; color:var(--pj-brown); margin:0 0 1.6rem; font-family:var(--pj-font); }
+  .pj-cb__section h3 { font-size:1.5rem; font-weight:700; color:var(--pj-brown); margin:2.4rem 0 0.8rem; font-family:var(--pj-font); }
+  .pj-cb__section p { font-size:1.45rem; line-height:1.75; color:rgba(74,44,10,0.82); margin:0 0 1.2rem; font-family:var(--pj-font); }
+  .pj-cb__section ul { padding-left:2rem; margin:0 0 1.2rem; }
+  .pj-cb__section ul li { font-size:1.4rem; line-height:1.7; color:rgba(74,44,10,0.8); margin-bottom:0.5rem; font-family:var(--pj-font); }
+
+  /* 2-col layout */
+  .pj-cb__two-col { display:grid; grid-template-columns:1fr 36rem; gap:5rem; align-items:start; }
+  @media(max-width:899px){ .pj-cb__two-col{ grid-template-columns:1fr; } }
+  .pj-cb__two-col img { width:100%; border-radius:0.4rem; display:block; }
+
+  /* Coffee belt map placeholder */
+  .pj-cb__belt { background:var(--pj-brown); padding:5rem 2rem; text-align:center; }
+  .pj-cb__belt h2 { font-size:2rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#ffffff; margin:0 0 2.4rem; font-family:var(--pj-font); }
+  .pj-cb__belt-map { max-width:90rem; margin:0 auto; border-radius:0.4rem; overflow:hidden; }
+  .pj-cb__belt-map img { width:100%; display:block; }
+
+  /* Tables */
+  .pj-cb__table-wrap { overflow-x:auto; margin:2rem 0; }
+  .pj-cb__table { width:100%; border-collapse:collapse; font-family:var(--pj-font); font-size:1.3rem; }
+  .pj-cb__table th { background:var(--pj-brown); color:#ffffff; padding:1.2rem 1.6rem; text-align:left; font-weight:700; letter-spacing:0.04em; }
+  .pj-cb__table td { padding:1rem 1.6rem; border-bottom:1px solid rgba(74,44,10,0.1); color:rgba(74,44,10,0.85); vertical-align:top; line-height:1.5; }
+  .pj-cb__table tr:nth-child(even) td { background:rgba(74,44,10,0.04); }
+  .pj-cb__table tr:last-child td { border-bottom:none; }
+
+  /* Divider band */
+  .pj-cb__band { background:#C4A882; padding:4rem 2rem; text-align:center; }
+  .pj-cb__band p { font-size:1.6rem; font-style:italic; color:var(--pj-brown); max-width:70rem; margin:0 auto; font-family:var(--pj-font); }
+{%- endstyle -%}
+
+<!-- Hero -->
+<div class="pj-cb__hero">
+  {%- if section.settings.hero_image != blank -%}
+    {{ section.settings.hero_image | image_url: width: 1600 | image_tag: loading: 'eager', alt: 'Coffee Basics' }}
+  {%- else -%}
+    <img src="https://media.istockphoto.com/id/1426308030/photo/south-indian-filter-coffee-served-in-a-traditional-tumbler-or-cup-over-roasted-raw-beans.jpg?s=612x612&w=0&k=20&c=ELVrPPs4-9dXI6T9rrusrYQJ9op2IZg0vylfgbRUz_Q=" alt="Coffee beans hero" loading="eager">
+  {%- endif -%}
+  <div class="pj-cb__hero-overlay"></div>
+  <div class="pj-cb__hero-content">
+    <p class="pj-cb__breadcrumb">Home / Coffee Basics</p>
+    <h1 class="pj-cb__hero-title">Coffee Basics</h1>
+  </div>
+</div>
+
+<!-- Section 1 — Origins -->
+<div class="pj-cb__section">
+  <div class="pj-cb__two-col">
+    <div>
+      <h2>Discover the Global Origins of Coffee</h2>
+      <p>Coffee originates from the Ethiopian highlands and has since spread to become one of the world's most widely consumed beverages. Today, coffee is grown in a region known as the "Bean Belt" or "Coffee Belt" — a band of tropical climate between the Tropics of Cancer and Capricorn. This includes:</p>
+      <ul>
+        <li>Central and South America (Brazil, Colombia, Guatemala)</li>
+        <li>Africa (Ethiopia, Kenya, Tanzania)</li>
+        <li>Asia and the Pacific (India, Indonesia, Vietnam)</li>
+      </ul>
+      <p>The best coffee-growing regions produce coffee beans with distinctly rich flavour profiles that reflect their unique terroir, soil, altitude, and climate. Paul John Caffeine sources exclusively from the premium estates of Coorg and Chikmagalur in Karnataka, India.</p>
+    </div>
+    <div>
+      {%- if section.settings.origins_image != blank -%}
+        {{ section.settings.origins_image | image_url: width: 720 | image_tag: loading: 'lazy', alt: 'Coffee origins' }}
+      {%- else -%}
+        <img src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?w=720&q=85&auto=format&fit=crop" alt="Coffee beans" loading="lazy" style="width:100%;border-radius:0.4rem;display:block;">
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<!-- Coffee Belt -->
+<div class="pj-cb__belt">
+  <h2>The Coffee Belt</h2>
+  <div class="pj-cb__belt-map">
+    {%- if section.settings.belt_image != blank -%}
+      {{ section.settings.belt_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: 'The Coffee Belt world map' }}
+    {%- else -%}
+      <img src="https://images.unsplash.com/photo-1504630083234-14187a9df0f5?w=1400&q=85&auto=format&fit=crop" alt="Coffee growing regions" loading="lazy">
+    {%- endif -%}
+  </div>
+</div>
+
+<!-- Where Do Our Beans Come From -->
+<div class="pj-cb__section">
+  <h2>Where Do Our Coffee Beans Come From?</h2>
+  <p>Our coffee beans are typically sourced from Asia, one of the three major regions in the world. The east coast of Asia comprises a significant portion of the global supply of coffee. Paul John Caffeine sources shade-grown Arabica and Robusta from the fertile hills of Karnataka, one of the top coffee-growing states of India.</p>
+  <p>The diversity of Indian soil and the perfect high-altitude conditions produce coffee beans (both Arabica and Robusta) that are described as nutty, earthy, chocolatey, with a smooth finish. Indian coffee beans are compared to regions like Honduras and Guatemala, owing to their common altitude and microclimate similarities.</p>
+
+  <h3>Exploring the Varieties of Coffee Beans</h3>
+  <p>There are many different varieties of coffee beans, each offering distinct flavour notes. Here is a brief overview of coffee bean types and their characteristics:</p>
+  <ul>
+    <li><strong>Arabica Coffee</strong> — From 74% of the world's coffee harvest at the time of its harvest.</li>
+    <li><strong>Robusta Coffee</strong> — This is the second most popular variety and is known for its strong, bold flavour.</li>
+    <li><strong>Liberica Coffee</strong> — a much rarer breed, more typically found in Southeast Asian coffee-growing regions.</li>
+    <li><strong>Excelsa Coffee</strong> — A variety of Liberica beans known for their uniquely tart and fruity notes.</li>
+    <li>Popular among many people seeking a healthful replacement to coffee beans, Chicory coffee is a natural and caffeine-free alternative.</li>
+  </ul>
+</div>
+
+<!-- Roasting Levels Table -->
+<div class="pj-cb__section" style="padding-top:0;">
+  <h2>The Coffee Roasting Levels</h2>
+  <p>Coffee roasting levels fundamentally alter the flavour of the bean. Here is a quick guide to understanding the different roast levels from light to dark:</p>
+  <div class="pj-cb__table-wrap">
+    <table class="pj-cb__table">
+      <thead>
+        <tr>
+          <th>Roast Level</th>
+          <th>Colour</th>
+          <th>Flavour Profile / Character</th>
+          <th>Caffeine Range</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Light Roast — Light brown</td>
+          <td>Light brown / cinnamon</td>
+          <td>Subtle and delicate, floral citrus, high acidity, retaining most of the bean's original flavour</td>
+          <td>Slightly more caffeine per bean</td>
+          <td>Pour-over, drip, light tasting notes, specialty coffee</td>
+        </tr>
+        <tr>
+          <td>Medium Roast — Medium brown</td>
+          <td>Light caramel brown</td>
+          <td>Balanced and well-rounded, New England style, Balance of sweetness and medium body</td>
+          <td>Fairly high caffeine, works well</td>
+          <td>Best for enjoying black or slightly flavoured; drip works well</td>
+        </tr>
+        <tr>
+          <td>Medium-Dark Roast</td>
+          <td>Rich dark brown</td>
+          <td>Full-bodied with chocolate, caramel, and nutty notes, lower acidity, slightly bittersweet finish</td>
+          <td>The slightly to moderately lower caffeine</td>
+          <td>Espresso, lattes, Moka pot, slightly dark/slightly bitter</td>
+        </tr>
+        <tr>
+          <td>Dark Roast</td>
+          <td>Very dark brown / nearly black</td>
+          <td>Strong with chocolate, smoky, intense flavours, minimal acidity, very bold and slightly bitter</td>
+          <td>Lowest caffeine per bean (though bold)</td>
+          <td>Espresso shots or in lattes or cappuccinos, or in heavy black coffee</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Understanding Coffee Roasting Levels from Light to Dark</h3>
+  <p>When purchasing coffee, keep in mind that not all dark roasts are created equal. Medium-dark roasts from quality origins like India can offer a full-bodied experience without being overly bitter, making them ideal for everyday drinking.</p>
+</div>
+
+<!-- Caffeine Tables -->
+<div class="pj-cb__section" style="padding-top:0;">
+  <h2>Caffeine Content in Different Coffee Types</h2>
+  <p>The amount of caffeine in your cup depends on many factors including the type of coffee, the brewing method, and the volume you consume. The below table gives the caffeine content in different coffee types to help you monitor your energy intake for your energy level.</p>
+
+  <h3>Caffeine Content Differs By Bean Variety</h3>
+  <div class="pj-cb__table-wrap">
+    <table class="pj-cb__table">
+      <thead>
+        <tr><th>Bean Variety</th><th>Caffeine %</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Arabica</td><td>1.2</td></tr>
+        <tr><td>Robusta</td><td>2.7</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Caffeine Content Differs By Brewing Method</h3>
+  <div class="pj-cb__table-wrap">
+    <table class="pj-cb__table">
+      <thead>
+        <tr><th>Brewing Method</th><th>Caffeine Per Serving (mg)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Drip Coffee (8oz)</td><td>65–120 mg</td></tr>
+        <tr><td>Espresso (1 shot)</td><td>58–185 mg</td></tr>
+        <tr><td>French Press (8oz)</td><td>80–135 mg</td></tr>
+        <tr><td>Cold Brew (8oz)</td><td>~7 mg</td></tr>
+        <tr><td>Espresso Shot</td><td>58–72 mg</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Freshness Tips -->
+<div class="pj-cb__section" style="padding-top:0;">
+  <h2>How to Store Coffee Beans for Freshness</h2>
+  <p>Stored coffee beans lose their flavour fast, so here are a few key tips to keep them fresh. Containers should be airtight, and stored away from sunlight:</p>
+  <ul>
+    <li>Use an opaque, airtight container to protect from light and air exposure.</li>
+    <li>Keep at room temperature — do not refrigerate, as moisture causes the beans to degrade.</li>
+    <li>Store away from heat sources like the stovetop or oven.</li>
+    <li>Buy whole beans and grind fresh — pre-ground coffee loses flavour within minutes of grinding.</li>
+    <li>Purchase smaller quantities more frequently for optimal freshness.</li>
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Coffee Basics",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image",    "label": "Hero background image" },
+    { "type": "image_picker", "id": "origins_image", "label": "Origins section image" },
+    { "type": "image_picker", "id": "belt_image",    "label": "Coffee Belt map image" }
+  ],
+  "presets": [{ "name": "Coffee Basics Page" }]
+}
+{% endschema %}
